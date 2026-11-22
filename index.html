@@ -1,0 +1,988 @@
+<!doctype html>
+<html lang="cs">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, viewport-fit=cover" />
+    <meta name="theme-color" content="#0a1320" />
+    <meta name="apple-mobile-web-app-capable" content="yes" />
+    <meta name="apple-mobile-web-app-status-bar-style" content="black-translucent" />
+    <meta name="description" content="Tvůj osobní běžecký deník. Garmin FIT, TCX, GPX a CSV s grafy a chytrým vyhodnocením." />
+    
+    <link rel="apple-touch-icon" href="data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAAMAAAADACAYAAABS3GwHAAAFPElEQVR4nO3cvXIURxSG4ZbLIRdBFQk5gQOnTnTFJE4JHOgSdC04Ycpb8q60P919Tvd5nhh2B/S907OixNOnz19/Nijqt+gLgEgCoDQBUJoAKE0AlCYAShMApQmA0gRAaQKgNAFQmgAoTQCUJgBKEwClCYDSfo++gB5eXp+jL6Gkb1++R1/Cw55W/Ikwg89rtSiWCcDo17NCDOkDMPz1ZQ4hbQCGv5+MIaQLwPD3lymENAEYfj0ZQkjx7wDGX1OGr3t4ABn+EogT/fUPewSK/oOTS9TjUEgAxs8ls0OY/ghk/Lxn9j6mBmD8XGPmTqYFYPxkFP5dIDhn1g1zSgDu/txjxm6GB2D8PGL0foYGYPz0MHJHPgNQ2rAA3P3padSenACUNiQAd39GGLErJwCldQ/A3Z+Reu/LCUBpXQNw92eGnjtzAlCaAHjYn3/8HX0Jd+v2f4N6/NnHCoN+eX3u8tNjW/znuLxvhUFHEcCijLoPASRh0DG6BOD5//8MerwenwN8F2iQH//8FX0J06z8ZxXAQCsPowoBDCaC3AQwgQjyEsAkIshJABOJIB8BTCaCXAQQQAR5CCCICHIQAKUJIJBTIJ4AgokglgASWDmCla+9NQGksfqQViWAREQwnwCSEcFcAkhIBPMIICkRzOFnghO7FIEft+zHCbAY4+9LAAsx/v4EsAjjH0MACzD+cQSQnPGPJYDEso9/h2/VCiCp7OPfhQASMv55BJCM8c8lgESMfz4BJGH8MQSQgPHHEUCwGePf4duVowggkPHHE0AQ489BAAGMPw8BTGb8uQhgop3Gv0tkApgkevy7DLY3AUwQPf5bfk01Ahgsy/jv+bUVCGCgbON/5PfsSgCDZB1/j9+7EwEMkH38PV9jdQLobJXxj3itFQmgo9XGP/I1VyGATlYd/+lrVwxBAB2sPv6I98lCAA/aafxR7xdJAA/YcfzXvO9OgQjgTjuPP8v7zyCAO1QY/yHLdYwigBtVGv8h2/X0JIAbVBz/Iet1PUoAV6o8/kP267uHAK5g/P9Z5TqvJYAPGP/eBPAO49+fAC4w/hoEcIbx1yGAN4y/FgGcMP56BPCL8dckgGb8lZUPwPhrKx2A8VM2AOOntaIBGD+HcgEYP6dKBWD8vFUmAOPnnBIBGD+XbB+A8fOerQMwfj6ybQDGzzW2DMD4udZ2ARg/t9gqAOPnVtsEYPzcY4sAjJ97LR+A8fOIpQMwfh61bADGTw9LBmD89LJkAKPHafx1LBlAa+NGavy1LBtAa/3Havz1LB1Aa/1Ga/w1LR9Aa4+P1/jr2iKA1u4fsfHXtk0Ard0+ZuNnqwBau37Uxk9rGwbQ2sfjNn4OWwbQ2uWRGz+nugTw7cv3Hi/T3duxG/9eeuxu2xPgcIze+Dln+wBaM34uKxEAXCIASusWQNYPwuyp196cAJQmAErrGoDHIGbouTMnAKV1D8ApwEi99+UEoLQhATgFGGHErpwAlDYsAKcAPY3akxOA9EbeTIcG4BQgu+EngAh4xOj9THkEEgH3mLGbaZ8BRMAtZu3Fh2DSmXmznBqAU4CPzN7I9BNABFwSsY2nT5+//pz+rr+8vD5HvTXJRN0YQz8DOA1oLXYH4R+CRVBb9Nc/9BHolMehWqKHf0gTwEEI+8sy/tYSBnAQwn4yDf+QNoCDENaXcfiH9AEchLCezMM/LBPAKTHktcLoTy0ZwFuCiLHa2M/ZIgC4V/g/hEEkAVCaAChNAJQmAEoTAKUJgNIEQGkCoDQBUJoAKE0AlCYAShMApQmA0v4FXhXP6cGHPfsAAAAASUVORK5CYII=" />
+    <title>Běžecký kompas · Garmin deník</title>
+  <style>
+@import url('https://fonts.googleapis.com/css2?family=DM+Sans:wght@400;500;600;700;800&family=Space+Grotesk:wght@400;500;600;700&display=swap');
+:root {font-family:'DM Sans',system-ui,-apple-system,sans-serif;color:#e9f1fa;background:#09131d;font-synthesis:none;--bg:#09131d;--panel:#121f2b;--line:#2a3b45;--muted:#8196a4;--lime:#d9fd71;--aqua:#65ddce;--white:#f1f7f9;}
+*{box-sizing:border-box}html{scroll-behavior:smooth}body{margin:0;min-width:320px;background:var(--bg)}button,input,select{font:inherit}button{cursor:pointer}button:focus-visible,a:focus-visible,select:focus-visible,input:focus-visible{outline:2px solid var(--lime);outline-offset:3px}a{color:inherit;text-decoration:none}button{transition:filter .2s,transform .2s}button:hover{filter:brightness(1.08)}button:active{transform:scale(.98)}[hidden]{display:none!important}
+.topbar{height:82px;border-bottom:1px solid #233440;background:#0b1720;display:flex;align-items:center;justify-content:space-between;padding:0 max(28px,calc((100vw - 1320px)/2));position:relative;z-index:3}.brand{display:flex;align-items:center;gap:13px;line-height:1}.brand-mark{display:grid;place-items:center;width:42px;height:42px;background:var(--lime);border-radius:13px;color:#122122}.brand-arrow{font-family:'Space Grotesk';font-size:29px;font-weight:700}.brand strong,.brand small{display:block;letter-spacing:3px}.brand strong{font-size:17px}.brand small{font-size:10px;letter-spacing:5.5px;color:var(--lime);margin-top:6px}.top-actions{display:flex;align-items:center;gap:21px}.private-label{font-size:12px;font-weight:700;color:#aec2c9;letter-spacing:.3px;display:flex;align-items:center;gap:8px}.private-dot{width:7px;height:7px;background:var(--aqua);border-radius:50%;box-shadow:0 0 0 5px #65ddce1f}.icon-button{display:grid;place-items:center;background:#162633;border:1px solid #2c4150;color:#d2e7eb;border-radius:12px;width:39px;height:39px;font-size:18px}.icon-button.danger{color:#f6a4a8}.main-content{max-width:1320px;padding:31px 28px 24px;margin:auto}.hero{min-height:340px;border-radius:22px;background:radial-gradient(circle at 78% 36%,#254b47 0%,#163a3c 20%,#102b35 42%,#122733 70%,#122331 100%);border:1px solid #2a4649;display:grid;grid-template-columns:1.45fr 1fr;position:relative;overflow:hidden}.hero-text{padding:49px 56px 44px;position:relative;z-index:2}.eyebrow,.section-kicker{font-size:10px;color:var(--aqua);letter-spacing:2.2px;font-weight:800}.eyebrow-separator{padding:0 12px;color:#6d9791}.hero h1{font-family:'Space Grotesk';font-size:clamp(40px,4.5vw,64px);line-height:1.03;letter-spacing:-2.8px;font-weight:700;margin:20px 0 17px;color:var(--white)}.hero h1 em{font-style:normal;color:var(--lime)}.hero p{max-width:500px;color:#b6ccd0;font-size:14px;line-height:1.75;margin:0 0 25px}.hero-buttons{display:flex;flex-wrap:wrap;gap:11px}.btn{border:1px solid transparent;border-radius:10px;padding:13px 20px;font-weight:800;font-size:12px;letter-spacing:.2px;white-space:nowrap}.btn-primary{background:var(--lime);color:#11241c}.btn-ghost{border-color:#68828b80;background:#22394495;color:#edf5f8}.btn-outline{background:#162735;color:#d9e8ea;border-color:#3a5360}.btn-danger{color:#f8b3b7;border-color:#77454b;background:#382c36}.btn.compact{padding:11px 16px}.hero-formats{margin-top:20px;display:flex;align-items:center;gap:7px;color:#91afb3;font-size:11px}.chip{font-size:9px;color:#b1cfcb;border:1px solid #65807d88;border-radius:4px;padding:3px 6px;font-weight:800}.hero-formats>span:last-child{padding-left:5px}.hero-visual{position:relative;min-height:310px}.hero-orbit{position:absolute;border:1px dashed #70a6a15e;border-radius:50%;width:410px;height:410px;top:-34px;left:-4px}.orbit-two{width:288px;height:288px;top:30px;left:56px;border-color:#9bb9b93b;border-style:solid}.hero-compass{position:absolute;left:127px;top:91px;width:155px;height:155px;border:13px solid #d8fd7180;box-shadow:0 0 0 1px #efffdd53,0 0 60px #d9fd7120,0 0 0 45px #d9fd7106;background:#dcfd71;display:grid;place-items:center;border-radius:50%;transform:rotate(10deg)}.hero-compass span{color:#162a2b;font-family:'Space Grotesk';font-size:115px;font-weight:700;line-height:1;transform:translate(-4px,-6px)}.hero-mini-stat{position:absolute;bottom:28px;right:29px;padding:14px 19px;background:#122c31c9;backdrop-filter:blur(12px);border:1px solid #6a938a70;border-radius:12px;z-index:2}.hero-mini-stat span{display:block;color:var(--aqua);font-size:9px;letter-spacing:1.5px;font-weight:800;margin-bottom:7px}.hero-mini-stat strong{font-size:14px;line-height:1.5}.hero-glow{position:absolute;left:100px;top:60px;width:260px;height:260px;background:var(--lime);filter:blur(110px);opacity:.11}.demo-banner{margin-top:20px;display:flex;align-items:center;gap:14px;padding:13px 16px;background:#223326;border:1px solid #697a4470;border-radius:11px;font-size:12px;color:#c8d6bd}.demo-banner strong{color:var(--lime);font-size:10px;letter-spacing:1.4px;white-space:nowrap}.section-top{display:flex;align-items:flex-end;justify-content:space-between;margin:38px 0 18px;gap:12px}h2{font-family:'Space Grotesk';font-weight:700;letter-spacing:-.7px;font-size:24px;margin:6px 0 0;line-height:1.15}.toolbar{display:flex;align-items:center}.select-wrap{font-size:12px;color:#adc3cb;display:flex;gap:11px;align-items:center}select{padding:9px 29px 9px 12px;background:#152633;color:#ebf6f5;border:1px solid #304652;border-radius:8px;font-weight:700;font-size:12px}.stats-grid{display:grid;grid-template-columns:repeat(4,1fr);gap:14px}.stat-card{background:var(--panel);border:1px solid var(--line);border-radius:16px;padding:22px 23px 18px;min-height:161px;position:relative;overflow:hidden}.stat-card:first-child{border-color:#5d8a6970;background:linear-gradient(130deg,#183532,#10232b)}.stat-label{color:#96b0bb;font-size:10px;font-weight:800;letter-spacing:1.6px}.stat-value{display:flex;align-items:baseline;gap:5px;margin:15px 0 6px;font-family:'Space Grotesk';font-weight:700;color:var(--white);font-size:39px;letter-spacing:-1.6px;line-height:1}.stat-card:first-child .stat-value{color:var(--lime)}.stat-value small{font-family:'DM Sans';font-size:13px;letter-spacing:0;color:#9eb6ba}.stat-note{color:var(--muted);font-size:11px}.stat-glyph{position:absolute;font-family:'Space Grotesk';right:18px;top:20px;color:#6a8a8d47;font-size:30px}.charts-layout{display:grid;grid-template-columns:1fr 1fr;gap:15px;margin-top:16px}.panel{background:var(--panel);border:1px solid var(--line);border-radius:16px;min-width:0}.chart-panel{padding:24px 24px 18px}.panel-head{display:flex;align-items:flex-start;justify-content:space-between;gap:12px}.panel-head h2{font-size:19px;margin-top:10px}.chart-tag{font-size:9px;color:#8fabb4;border:1px solid #314652;padding:7px 9px;border-radius:6px;letter-spacing:.8px;white-space:nowrap}.chart-holder{height:233px;margin-top:22px}.main-grid{display:grid;grid-template-columns:1.15fr 1fr;gap:15px;margin-top:16px}.insight-panel,.goal-panel{padding:26px}.sparkle{color:var(--lime)}.insight-list{display:flex;flex-direction:column;gap:13px;margin-top:22px}.insight-item{display:flex;gap:13px;align-items:flex-start}.insight-icon{height:37px;width:37px;min-width:37px;display:grid;place-items:center;border-radius:10px;background:#293d37;color:var(--lime);font-size:19px}.insight-icon.blue{color:#90e2df;background:#1d4149}.insight-icon.orange{color:#ffce87;background:#40372f}.insight-item h3{font-size:13px;letter-spacing:.1px;margin:1px 0 5px}.insight-item p{font-size:12px;color:#9eb4bf;line-height:1.62;margin:0}.disclaimer{font-size:10px;color:#697e8b;line-height:1.6;margin:22px 0 0}.text-button{color:var(--lime);border:0;background:none;font-size:12px;font-weight:800;white-space:nowrap}.goal-ring-wrap{display:flex;align-items:center;justify-content:space-around;gap:24px;margin:28px 0 23px}.goal-ring{width:180px;height:180px;flex:0 0 180px;border-radius:50%;background:conic-gradient(var(--lime) 0 var(--fill,0%),#30434a var(--fill,0%) 100%);display:grid;place-items:center;box-shadow:inset 0 0 30px #0003}.goal-ring-core{width:143px;height:143px;border-radius:50%;background:var(--panel);display:flex;align-items:center;justify-content:center;flex-direction:column}.goal-ring-core strong{font:700 34px 'Space Grotesk'}.goal-ring-core span{font-size:10px;color:#96adb8}.goal-info{flex:1}.goal-label{font-size:10px;font-weight:800;color:var(--aqua);letter-spacing:1.5px}.goal-big{font:700 32px 'Space Grotesk';margin:11px 0}.goal-big small{font-size:14px;font-family:'DM Sans';font-weight:600;color:#a7bac0}.goal-info p{font-size:12px;color:#a5b5bd;line-height:1.6;max-width:175px}.goal-footer{border-top:1px solid #2e404a;padding-top:17px;color:#8ba4ad;font-size:11px}.activity-heading{margin-top:43px}.count-bubble{background:#20373f;color:#b7d6d2;border-radius:50%;display:inline-grid;place-items:center;font:700 13px 'DM Sans';min-width:26px;height:26px;vertical-align:middle}.right-actions{display:flex;gap:10px}.activity-layout{display:grid;grid-template-columns:0.83fr 1.17fr;gap:15px;margin-bottom:30px}.history-panel{padding:6px;max-height:530px;overflow:auto}.run-row{display:flex;align-items:center;gap:11px;width:100%;border:1px solid transparent;border-radius:11px;background:transparent;color:var(--white);text-align:left;padding:16px 12px;margin-bottom:4px}.run-row:hover{background:#172c37}.run-row.active{background:#233d3b;border-color:#54786c75}.run-badge{flex:0 0 42px;height:42px;border-radius:13px;display:grid;place-items:center;background:#304a45;color:var(--lime);font-size:18px}.run-meta{flex:1;min-width:0}.run-meta strong{font-family:'Space Grotesk';display:block;font-size:15px}.run-meta span{display:block;margin-top:5px;color:#839eaa;font-size:11px;white-space:nowrap;overflow:hidden;text-overflow:ellipsis}.run-numbers{text-align:right}.run-numbers b{display:block;font-family:'Space Grotesk';font-size:16px}.run-numbers small{display:block;font-size:10px;color:#93adb5;margin-top:5px}.empty-state{text-align:center;padding:35px 15px;color:#9bb4bc;font-size:13px}.detail-panel{padding:24px;min-height:365px}.detail-date{color:#88a6ac;font-size:11px;margin-top:8px}.detail-metrics{display:grid;grid-template-columns:repeat(4,1fr);gap:8px;margin-top:22px}.detail-metric{background:#1c2e39;border:1px solid #2f454e;padding:13px 12px;border-radius:10px}.detail-metric span{font-size:9px;letter-spacing:1px;color:#819ea8;font-weight:700}.detail-metric strong{font:700 17px 'Space Grotesk';display:block;margin-top:7px;white-space:nowrap}.detail-head{margin-bottom:9px}.detail-subhead{font-size:10px;letter-spacing:1.5px;font-weight:800;color:#a0b8bd;margin:21px 0 8px}.detail-chart{height:180px}.no-samples{background:#182b35;border:1px dashed #42606a;border-radius:10px;padding:22px;color:#88a6ad;font-size:12px;line-height:1.6;margin-top:17px}.splits{display:flex;gap:6px;flex-wrap:wrap}.split-pill{background:#243941;color:#c9e6df;font-size:11px;border-radius:6px;padding:7px 9px}.route-box{height:155px;border:1px solid #37505a;background:linear-gradient(140deg,#152e37,#203e40);border-radius:10px;display:grid;place-items:center;overflow:hidden}.route-box svg{width:100%;height:100%;padding:8px}.footer{display:flex;justify-content:space-between;align-items:center;gap:12px;padding:26px 3px 6px;border-top:1px solid #24363f;color:#78929c;font-size:11px}.footer-brand{color:#c8ed8c;font-weight:800;letter-spacing:1.8px;font-size:10px}.modal{background:#142531;color:#eef5f6;border:1px solid #45606a;border-radius:18px;padding:26px;width:min(520px,calc(100% - 24px));max-height:calc(100dvh - 32px);box-shadow:0 30px 140px #000a}.modal::backdrop{background:#040b11cc;backdrop-filter:blur(5px)}.modal-header{display:flex;justify-content:space-between;margin-bottom:25px;align-items:flex-start}.modal h2{font-size:24px}.modal label{display:flex;flex-direction:column;gap:9px;color:#b2c8ce;font-size:12px;font-weight:700;margin-bottom:18px}.modal input{background:#0b1a24;border:1px solid #3a5361;border-radius:8px;padding:13px 12px;color:#eff9fc;min-width:0;color-scheme:dark}.modal-2col{display:grid;grid-template-columns:1fr 1fr;gap:13px}.help{font-size:11px;color:#89a4ad;line-height:1.65}.modal-actions{display:flex;justify-content:flex-end;gap:10px;margin-top:25px;flex-wrap:wrap}.toast{position:fixed;z-index:100;bottom:max(24px,env(safe-area-inset-bottom));left:50%;transform:translateX(-50%) translateY(110px);opacity:0;pointer-events:none;background:#ddff99;color:#143028;font-size:12px;font-weight:800;padding:13px 21px;border-radius:12px;box-shadow:0 10px 50px #0009;max-width:min(93%,650px);transition:.25s;text-align:center}.toast.visible{transform:translateX(-50%) translateY(0);opacity:1}.toast.error{background:#f8b1a8;color:#421f26}
+@media(max-width:1050px){.hero-text{padding:42px 35px}.hero-visual{transform:scale(.86);transform-origin:center}.stat-card{padding:19px 17px}.stat-value{font-size:34px}.goal-ring{width:145px;height:145px;flex-basis:145px}.goal-ring-core{width:111px;height:111px}.goal-ring-core strong{font-size:28px}.goal-ring-wrap{gap:12px}.goal-big{font-size:26px}.chart-tag{display:none}}
+@media(max-width:760px){.topbar{padding:0 17px;height:68px}.main-content{padding:18px 13px}.brand strong{font-size:13px;letter-spacing:2px}.brand small{font-size:9px;letter-spacing:3.5px}.brand-mark{width:37px;height:37px}.private-label{font-size:0}.private-dot{width:8px;height:8px}.top-actions{gap:11px}.hero{display:block;min-height:0}.hero-text{padding:33px 25px 30px}.hero h1{font-size:43px;letter-spacing:-2px;margin:16px 0 12px}.hero p{font-size:12px}.hero-visual{display:none}.eyebrow{font-size:9px;letter-spacing:1.4px}.hero-buttons{gap:8px}.hero-buttons .btn{font-size:11px;padding:12px 14px}.hero-formats{flex-wrap:wrap;margin-top:17px}.demo-banner{align-items:flex-start;flex-direction:column;gap:5px;font-size:11px}.section-top{margin:30px 0 14px}.section-top h2{font-size:21px}.stats-grid{grid-template-columns:1fr 1fr;gap:10px}.stat-card{min-height:131px;padding:18px 14px}.stat-label{font-size:9px;letter-spacing:1px}.stat-value{font-size:32px;margin:17px 0 6px}.stat-value small{font-size:10px}.stat-glyph{font-size:21px;right:10px;top:13px}.stat-note{font-size:10px}.charts-layout,.main-grid,.activity-layout{grid-template-columns:1fr;gap:12px;margin-top:12px}.chart-panel,.insight-panel,.goal-panel,.detail-panel{padding:20px}.panel-head h2{font-size:19px}.chart-holder{height:205px;margin-top:16px}.goal-ring-wrap{justify-content:center;gap:24px}.goal-ring{width:166px;height:166px;flex-basis:166px}.goal-ring-core{width:130px;height:130px}.goal-ring-core strong{font-size:32px}.goal-big{font-size:30px}.history-panel{max-height:350px}.activity-heading{align-items:flex-start;flex-direction:column;gap:12px}.right-actions{width:100%;justify-content:flex-start}.right-actions .btn{font-size:11px;padding:10px 11px}.detail-metrics{grid-template-columns:repeat(2,1fr)}.footer{flex-direction:column;align-items:flex-start;padding-top:18px}.modal-2col{grid-template-columns:1fr}}
+@media(max-width:380px){.goal-ring{flex-basis:125px;height:125px}.goal-ring-core{width:95px;height:95px}.goal-ring-core strong{font-size:26px}.goal-ring-core span{font-size:8px}.goal-ring-wrap{gap:13px}.hero h1{font-size:37px}.goal-big{font-size:25px}}
+
+
+/* Srovnání průměrného tepu při podobném tempu */
+.hr-panel{margin-top:16px;padding:25px 26px 23px}
+.hr-panel .panel-head h2{font-size:20px}
+.hr-layout{display:grid;grid-template-columns:minmax(0,1.5fr) minmax(230px,.85fr);gap:25px;align-items:stretch;margin-top:10px}
+.hr-chart-holder{height:235px;margin-top:4px}
+.hr-criteria{margin:6px 0 0;color:#8fa7b1;font-size:11px;line-height:1.6}
+.hr-summary{background:#192e35;border:1px solid #31545a;border-radius:13px;padding:23px;display:flex;flex-direction:column;justify-content:center;gap:9px}
+.hr-summary .section-kicker{font-size:9px}
+.hr-delta{font-family:'Space Grotesk';font-size:43px;color:var(--lime);line-height:1.12;letter-spacing:-1px}
+.hr-summary-sub{color:#c3d7d8;font-size:12px;font-weight:800}
+.hr-summary p{margin:5px 0;color:#b9cdd1;font-size:12px;line-height:1.65}
+.hr-caveat{display:block;border-top:1px solid #39555a;padding-top:11px;color:#89a6ae;font-size:10px;line-height:1.6}
+@media(max-width:760px){.hr-panel{padding:20px}.hr-layout{grid-template-columns:1fr;gap:13px}.hr-chart-holder{height:212px}.hr-summary{padding:17px}.hr-delta{font-size:36px}}
+
+/* Personal heart-rate zones and running cadence · v1.2 */
+.zones-panel,.cadence-panel{margin-top:16px;padding:25px 26px 23px}
+.zone-layout,.cadence-layout{display:grid;grid-template-columns:minmax(0,1.6fr) minmax(220px,.85fr);gap:24px;margin:23px 0 16px}
+.zone-setting-info{font-size:11px;color:#a8c1c5;margin:0 0 17px}
+.zone-rows{display:flex;flex-direction:column;gap:12px}
+.zone-row{display:grid;grid-template-columns:48px 95px minmax(70px,1fr) 115px;align-items:center;gap:8px;min-width:0;font-size:12px}
+.zone-label{display:flex;align-items:center;gap:7px;font-weight:800;color:#e5f2ed}
+.zone-label i{width:9px;height:9px;flex:0 0 9px;border-radius:50%}
+.zone-range{font-size:11px;color:#92aab1}
+.zone-track{height:10px;border-radius:999px;background:#304751;overflow:hidden}
+.zone-track span{height:100%;display:block;border-radius:inherit;transition:width .25s}
+.zone-duration{text-align:right;color:#d9e8e9;font-size:11px;white-space:nowrap}
+.zone-duration small{color:#829fac;font-weight:500}
+.zone-comment,.cadence-summary{border:1px solid #32505a;border-radius:13px;background:#172d38;padding:23px;display:flex;flex-direction:column;justify-content:center;gap:12px}
+.zone-comment strong,.cadence-summary strong{font:700 28px 'Space Grotesk';color:var(--lime)}
+.zone-comment p,.cadence-summary p{font-size:12px;line-height:1.65;color:#b9cbd0;margin:0}
+.cadence-chart-holder{height:230px;margin:0}
+.zone-config{border-top:1px solid #354f59;border-bottom:1px solid #354f59;padding:20px 0 5px;margin-bottom:20px}
+.zone-config .section-kicker{margin-bottom:17px}
+.zone-detail-note{font-size:11px;line-height:1.55;color:#9db5be;margin:0 0 13px}
+.detail-panel .zone-row{grid-template-columns:40px 83px minmax(45px,1fr) 99px;gap:5px}
+.detail-panel .zone-duration{font-size:10px}
+.detail-panel .zone-range{font-size:10px}
+@media(max-width:760px){.zones-panel,.cadence-panel{padding:20px}.zone-layout,.cadence-layout{grid-template-columns:1fr;gap:16px}.zone-row{grid-template-columns:39px 79px minmax(45px,1fr) 101px;gap:5px}.zone-range{font-size:10px}.zone-duration{font-size:10px}.zone-comment,.cadence-summary{padding:17px}.detail-panel .zone-row{grid-template-columns:36px 72px minmax(35px,1fr) 85px}.detail-panel .zone-duration small{display:none}}
+
+.modal{overflow-y:auto}
+
+
+/* Garmin Connect Personal API – secure optional sync. */
+.garmin-sync-panel{margin-top:20px;padding:24px 27px;background:linear-gradient(120deg,#152b32,#15242e);border-color:#45796e}
+.garmin-sync-panel h2{font-size:20px;margin:7px 0 0}
+.garmin-sync-panel p{margin:10px 0 16px;color:#a8bdc3;font-size:12px;line-height:1.65}
+.garmin-form{display:grid;grid-template-columns:minmax(180px,1.5fr) minmax(160px,1fr) auto;gap:10px;align-items:end}
+.garmin-form label{display:flex;flex-direction:column;color:#c9d8dc;gap:7px;font-size:11px;font-weight:700}
+.garmin-form input{width:100%;border:1px solid #46616b;border-radius:9px;background:#10202b;color:#fff;padding:12px 11px;min-width:0;font-size:13px}
+.garmin-form input::placeholder{color:#71868f}.garmin-form button{min-height:42px}
+.garmin-status{font-size:12px;margin-top:13px;color:#a5dec7;min-height:18px;line-height:1.5}
+.garmin-status.error{color:#ffa5a9}.garmin-footnote{color:#8ca9ae;font-size:11px;line-height:1.6;margin-top:8px}
+.garmin-footnote a{text-decoration:underline;text-decoration-color:#85b5b285}
+@media(max-width:800px){.garmin-form{grid-template-columns:1fr 1fr}.garmin-form button{grid-column:1/-1}.garmin-sync-panel{padding:20px}}
+@media(max-width:530px){.garmin-form{grid-template-columns:1fr}.garmin-form button{grid-column:1}}
+
+</style>
+</head>
+  <body>
+    <div id="app">
+      <header class="topbar">
+        <a class="brand" href="#prehled" aria-label="Běžecký kompas – přehled">
+          <span class="brand-mark"><span class="brand-arrow">↗</span></span>
+          <span><strong>BĚŽECKÝ</strong><small>KOMPAS</small></span>
+        </a>
+        <div class="top-actions">
+          <span class="private-label"><span class="private-dot"></span> Soukromý deník</span>
+          <button id="openSettings" class="icon-button" title="Nastavení" aria-label="Nastavení">⚙</button>
+        </div>
+      </header>
+      <main id="prehled" class="main-content">
+        <section class="hero">
+          <div class="hero-text">
+            <div class="eyebrow">TVŮJ BĚŽECKÝ DENÍK <span class="eyebrow-separator">/</span> <span id="todayLabel"></span></div>
+            <h1>Každý kilometr<br /><em>se počítá.</em></h1>
+            <p>Nahraj tréninky z Garminu a sleduj, jak roste tvoje vytrvalost. Čísla, souvislosti a malé kroky vpřed.</p>
+            <div class="hero-buttons">
+              <button class="btn btn-primary" id="uploadHero">＋ Nahrát běh z Garminu</button>
+              <button class="btn btn-ghost" id="addManual">Zapsat ručně</button>
+            </div>
+            <div class="hero-formats"><span class="chip">FIT</span><span class="chip">TCX</span><span class="chip">GPX</span><span class="chip">CSV</span><span class="chip">ZIP</span><span>• ruční import zůstává v telefonu</span></div>
+          </div>
+          <div class="hero-visual" aria-hidden="true">
+            <div class="hero-orbit orbit-one"></div><div class="hero-orbit orbit-two"></div>
+            <div class="hero-compass"><span>↗</span></div>
+            <div class="hero-mini-stat"><span>DNEŠNÍ MOTTO</span><strong>Tempo není všechno.<br />Směr ano.</strong></div>
+            <div class="hero-glow"></div>
+          </div>
+        </section>
+
+
+        <section class="panel garmin-sync-panel" id="garminSyncPanel" aria-labelledby="garminSyncHeading">
+          <div class="section-kicker">GARMIN CONNECT / PROPOJENÍ</div>
+          <h2 id="garminSyncHeading">↻ Synchronizace běhů z hodinek</h2>
+          <p>Po nastavení zabezpečeného Cloudflare Workeru zde načteš běhy přímo z Garmin Connect. Nejnovější aktivity se pokusíme doplnit i o FIT průběh tepu a kadence. Bez propojení můžeš dál používat ruční import.</p>
+          <form id="garminSyncForm" class="garmin-form">
+            <label>Adresa tvého zabezpečeného Workeru
+              <input id="garminWorkerUrl" type="url" required placeholder="https://bezecky-kompas-sync.…workers.dev" autocomplete="url" inputmode="url" />
+            </label>
+            <label>Soukromé synchronizační heslo
+              <input id="garminSyncPassword" type="password" required autocomplete="off" placeholder="Tvoje heslo z Cloudflare" />
+            </label>
+            <button class="btn btn-primary" id="garminSyncButton" type="submit">↻ Synchronizovat Garmin</button>
+          </form>
+          <div class="garmin-status" id="garminSyncStatus" role="status" aria-live="polite">Zatím nepropojeno.</div>
+          <div class="garmin-footnote">Garmin API klíč patří pouze do Cloudflare Secrets, nikdy sem ani na GitHub. Synchronizační heslo se neukládá; adresa Workeru se na tomto zařízení uloží. První synchronizace vyžaduje internet.</div>
+        </section>
+
+        <div id="demoBanner" class="demo-banner" hidden><strong>UKÁZKA APLIKACE</strong><span>Zobrazuješ ilustrační běhy. Nahraj vlastní soubor a ukázka se automaticky skryje.</span></div>
+        <section class="section-top" id="statistiky">
+          <div><div class="section-kicker">01 / SOUHRN</div><h2>Na první pohled</h2></div>
+          <div class="toolbar"><label class="select-wrap" for="periodSelect">Období <select id="periodSelect"><option value="7">7 dní</option><option value="30" selected>30 dní</option><option value="90">90 dní</option><option value="all">Vše</option></select></label></div>
+        </section>
+        <section class="stats-grid" aria-live="polite">
+          <article class="stat-card"><span class="stat-label">NABĚHÁNO</span><div class="stat-value"><span id="metricDistance">–</span><small>km</small></div><span id="metricDistanceNote" class="stat-note">V daném období</span><span class="stat-glyph">↗</span></article>
+          <article class="stat-card"><span class="stat-label">PRŮMĚRNÉ TEMPO</span><div class="stat-value"><span id="metricPace">–</span><small>/km</small></div><span id="metricPaceNote" class="stat-note">Váženo vzdáleností</span><span class="stat-glyph">◷</span></article>
+          <article class="stat-card"><span class="stat-label">PRŮMĚRNÝ TEP</span><div class="stat-value"><span id="metricHr">–</span><small>bpm</small></div><span id="metricHrNote" class="stat-note">Z běhů s tepovými daty</span><span class="stat-glyph">♡</span></article>
+          <article class="stat-card"><span class="stat-label">POČET BĚHŮ</span><div class="stat-value"><span id="metricRuns">–</span><small>tréninků</small></div><span id="metricRunsNote" class="stat-note">Konzistence je základ</span><span class="stat-glyph">◎</span></article>
+        </section>
+        <section class="charts-layout">
+          <article class="panel chart-panel"><div class="panel-head"><div><div class="section-kicker">02 / OBJEM</div><h2>Kilometry po týdnech</h2></div><span class="chart-tag">POSLEDNÍCH 8 TÝDNŮ</span></div><div class="chart-holder"><canvas id="weeklyChart" role="img" aria-label="Týdenní součty naběhaných kilometrů"></canvas></div></article>
+          <article class="panel chart-panel"><div class="panel-head"><div><div class="section-kicker">03 / TEMPO</div><h2>Vývoj běžeckého tempa</h2></div><span class="chart-tag">POSLEDNÍ BĚHY</span></div><div class="chart-holder"><canvas id="paceChart" role="img" aria-label="Vývoj průměrného tempa běhů"></canvas></div></article>
+        </section>
+
+        <section class="panel hr-panel" id="tepy" aria-labelledby="hrCompareTitle">
+          <div class="panel-head"><div><div class="section-kicker">04 / TEPOVÁ FREKVENCE</div><h2 id="hrCompareTitle">Tep při podobném tempu <span class="sparkle">♡</span></h2></div><span class="chart-tag" id="hrCompareTag">SROVNÁNÍ BĚHŮ</span></div>
+          <div class="hr-layout">
+            <div class="hr-graph"><div class="chart-holder hr-chart-holder"><canvas id="hrCompareChart" role="img" aria-label="Vývoj průměrné tepové frekvence při srovnatelném tempu"></canvas></div><p class="hr-criteria" id="hrCompareCriteria">Po nahrání běhů s tepem se zobrazí srovnání.</p></div>
+            <div class="hr-summary"><div class="section-kicker">VÝVOJ KONDIČNÍHO UKAZATELE</div><strong class="hr-delta" id="hrCompareDelta">–</strong><div class="hr-summary-sub" id="hrCompareSub">Čekám na běžecká data.</div><p id="hrCompareMessage">Porovnáme průměrný tep u běhů se srovnatelným tempem, vzdáleností a převýšením.</p><span class="hr-caveat">Nižší tep při podobném úsilí může být pozitivní signál, ale záleží i na teplotě, únavě, trase a přesnosti měření.</span></div>
+          </div>
+        </section>
+
+
+        <section class="panel zones-panel" id="zony" aria-labelledby="zoneTitle">
+          <div class="panel-head"><div><div class="section-kicker">05 / INTENZITA BĚHU</div><h2 id="zoneTitle">Tepové zóny <span class="sparkle">Z1–Z5</span></h2></div><button class="text-button" type="button" id="editZones">Upravit hranice →</button></div>
+          <div class="zone-layout">
+            <div><p id="zoneMaxLabel" class="zone-setting-info"></p><div id="zoneRows" class="zone-rows" aria-label="Čas v tepových zónách"></div></div>
+            <div class="zone-comment"><div class="section-kicker">VÝVOJ INTENZITY</div><strong id="zoneHeadline">–</strong><p id="zoneText">Načítám data o tepu.</p><p class="help" id="zoneCoverage"></p></div>
+          </div>
+          <p class="help">Zóny jsou odhadované ze zadané maximální tepové frekvence a nastavených procent. Výchozí hodnota 185 bpm je pouze ukázková – uprav ji podle svých údajů. Procenta zahrnují pouze úseky se zaznamenaným tepem.</p>
+        </section>
+        <section class="panel cadence-panel" id="kadence" aria-labelledby="cadenceTitle">
+          <div class="panel-head"><div><div class="section-kicker">06 / TECHNIKA BĚHU</div><h2 id="cadenceTitle">Kadence běhu <span class="sparkle">↗</span></h2></div><span class="chart-tag">KROKY ZA MINUTU</span></div>
+          <div class="cadence-layout"><div class="chart-holder cadence-chart-holder"><canvas id="cadenceChart" role="img" aria-label="Průměrná kadence jednotlivých běhů v krocích za minutu"></canvas></div>
+            <div class="cadence-summary"><div class="section-kicker">PRŮMĚR POSLEDNÍCH BĚHŮ</div><strong id="cadenceAvg">–</strong><p id="cadenceInfo">Načítám kadenci.</p><p id="cadenceDetailInfo" class="help"></p></div>
+          </div><p class="help">Kadence = počet kroků obou nohou za minutu (SPM). Neexistuje jedna ideální hodnota pro každého; záleží také na tempu, výšce a terénu.</p>
+        </section>
+
+        <section class="main-grid">
+          <article class="panel insight-panel"><div class="panel-head"><div><div class="section-kicker">07 / CO ŘÍKAJÍ DATA</div><h2>Trenérské postřehy <span class="sparkle">✳</span></h2></div></div><div id="insights" class="insight-list"></div><p class="disclaimer">Orientační doporučení z dostupných dat, nikoliv lékařské posouzení nebo diagnostika.</p></article>
+          <article class="panel goal-panel"><div class="panel-head"><div><div class="section-kicker">08 / CÍL</div><h2>Tvoje týdenní mise</h2></div><button class="text-button" id="editGoal">Upravit →</button></div><div class="goal-ring-wrap"><div class="goal-ring" id="goalRing"><div class="goal-ring-core"><strong id="goalPercent">0 %</strong><span>týdenního cíle</span></div></div><div class="goal-info"><div class="goal-label">TENTO TÝDEN</div><div class="goal-big"><span id="weekDistance">0</span> <small>/ <span id="goalDistance">20</span> km</small></div><p id="goalMessage">Drobné kroky tvoří velké změny.</p></div></div><div class="goal-footer">Od pondělí do neděle • běhy se sčítají automaticky</div></article>
+        </section>
+
+        <section class="section-top activity-heading" id="historie"><div><div class="section-kicker">09 / DETAILY</div><h2>Moje běhy <span id="totalCount" class="count-bubble">0</span></h2></div><div class="right-actions"><button class="btn btn-outline" id="exportBackup">↓ Záloha JSON</button><button class="btn btn-primary compact" id="uploadList">＋ Importovat</button></div></section>
+        <div class="activity-layout">
+          <article class="panel history-panel"><div id="runList" class="run-list"></div></article>
+          <article class="panel detail-panel"><div class="panel-head detail-head"><div><div class="section-kicker">DETAIL BĚHU</div><h2 id="detailTitle">Vyber běh</h2><div class="detail-date" id="detailDate"></div></div><button id="removeRun" class="icon-button danger" title="Smazat vybraný běh" aria-label="Smazat vybraný běh" hidden>✕</button></div><div id="runDetailBody"></div></article>
+        </div>
+        <footer class="footer"><div class="footer-brand">↗ BĚŽECKÝ KOMPAS</div><span>Tvá data. Tvůj pokrok. Tvůj směr.</span><span>Vytvořeno pro soukromé použití · verze 1.3</span></footer>
+      </main>
+      <input type="file" id="fileInput" hidden multiple accept=".fit,.tcx,.gpx,.csv,.json,.zip,application/zip,application/json,text/xml,application/gpx+xml" />
+      <dialog id="manualDialog" class="modal"><form method="dialog" id="manualForm"><div class="modal-header"><div><div class="section-kicker">RUČNÍ ZÁZNAM</div><h2>Nový běh</h2></div><button type="button" class="icon-button dialog-close">✕</button></div><label>Datum a čas <input id="manualDate" type="datetime-local" required /></label><div class="modal-2col"><label>Vzdálenost (km) <input id="manualDistance" type="number" min="0.1" step="0.01" placeholder="5.00" required /></label><label>Čas běhu (mm:ss / hh:mm:ss) <input id="manualTime" type="text" placeholder="32:15" required /></label></div><div class="modal-2col"><label>Průměrný tep (volitelné) <input id="manualHr" type="number" min="35" max="240" placeholder="145" /></label><label>Kadence (kroky/min; volitelné) <input id="manualCadence" type="number" min="80" max="260" placeholder="165" /></label></div><p class="help">Ručně přidaný běh nemá data po sekundách ani GPS trasu.</p><div class="modal-actions"><button type="button" class="btn btn-ghost dialog-close">Zrušit</button><button type="submit" class="btn btn-primary">Uložit běh</button></div></form></dialog>
+      <dialog id="settingsDialog" class="modal"><div class="modal-header"><div><div class="section-kicker">NASTAVENÍ</div><h2>Tvoje údaje</h2></div><button type="button" class="icon-button dialog-close">✕</button></div><label>Týdenní cíl (kilometry) <input id="goalInput" type="number" min="1" max="300" step="1" value="20" /></label><div class="zone-config"><div class="section-kicker">TEPOVÉ ZÓNY</div><label>Maximální tep (bpm) <input id="maxHrInput" type="number" min="120" max="230" step="1" value="185" /></label><p class="help">Přednastavené 185 bpm je pouze ukázka, ne individuální měření. Ideálně vlož svou skutečně zjištěnou maximální tepovou frekvenci nebo hodnoty podle nastavení hodinek.</p><div class="modal-2col"><label>Začátek Z2 (% maxima) <input id="zonePct1" type="number" min="40" max="96" step="1" value="60" /></label><label>Začátek Z3 (% maxima) <input id="zonePct2" type="number" min="40" max="96" step="1" value="70" /></label><label>Začátek Z4 (% maxima) <input id="zonePct3" type="number" min="40" max="96" step="1" value="80" /></label><label>Začátek Z5 (% maxima) <input id="zonePct4" type="number" min="40" max="96" step="1" value="90" /></label></div></div><p class="help">Záznamy běhů jsou uchovávané pouze v tomto prohlížeči a na tomto zařízení. Při vymazání dat prohlížeče můžeš o záznamy přijít. Pravidelně používej tlačítko Záloha JSON.</p><div class="modal-actions"><button id="clearAll" type="button" class="btn btn-danger">Smazat moje data</button><button id="saveSettings" type="button" class="btn btn-primary">Uložit nastavení</button></div></dialog>
+      <div id="toast" class="toast" role="status" aria-live="polite"></div>
+    </div>
+    <script type="module">
+import Chart from "https://esm.sh/chart.js@4.5.1/auto";
+import {Decoder, Stream} from "https://esm.sh/@garmin/fitsdk@21.217.0";
+import {unzipSync} from "https://esm.sh/fflate@0.8.2";
+/** Pure calculations shared between charts, FIT/TCX importing and tests. */
+const ZONE_COLORS=['#65ddce','#a9dc80','#d9fd71','#ffcc7a','#ff867f'];
+const ZONE_LABELS=['Z1','Z2','Z3','Z4','Z5'];
+const ZONE_NAMES=['Velmi lehká','Lehká','Střední','Vysoká','Velmi vysoká'];
+
+// FIT running cadence is usually stride cycles/min (one step from each foot).
+// Garmin Connect and the UI show the total number of foot strikes/min (SPM).
+// TCX RunCadence is likewise often strides/min. Export formats vary.
+function cadenceSpm(input){
+  const v=Number(input);
+  if(input==null||input===''||!Number.isFinite(v)||v<=0)return null;
+  const spm=v<120?v*2:v;
+  return spm>=80&&spm<=260?Math.round(spm*10)/10:null;
+}
+function usableCadence(input){
+  const v=Number(input);
+  return input!=null&&input!==''&&Number.isFinite(v)&&v>=80&&v<=260?v:null;
+}
+function runCadence(run){
+  const direct=usableCadence(run.cadence);
+  if(direct!=null)return direct;
+  const samples=(run.points||[]).map(p=>usableCadence(p.cadence)).filter(v=>v!=null);
+  return samples.length?samples.reduce((a,b)=>a+b,0)/samples.length:null;
+}
+function zoneBoundaries(settings){
+  return settings.thresholds.map(p=>Math.ceil(settings.maxHr*p/100));
+}
+function zoneIndex(hr,settings){
+  if(hr==null||!Number.isFinite(Number(hr))||Number(hr)<35||Number(hr)>240)return -1;
+  const limits=zoneBoundaries(settings);
+  const index=limits.findIndex(bound=>Number(hr)<bound);
+  return index<0?4:index;
+}
+// An interval is assigned to the HR sample at its start. Ignore missing HR
+// and gaps over 60 seconds (autopause or missing FIT smart recordings).
+// Import preserves timestamps even when point lists are reduced for graphing.
+function zoneSeconds(points,settings){
+  const seconds=[0,0,0,0,0];let valid=0;
+  for(let i=0;i<(points?.length||0)-1;i++){
+    const a=points[i],b=points[i+1],dt=Number(b.t)-Number(a.t);
+    if(!Number.isFinite(dt)||dt<=0||dt>60)continue;
+    const idx=zoneIndex(a.hr,settings);
+    if(idx<0)continue;
+    seconds[idx]+=dt;valid+=dt;
+  }
+  return {seconds,valid};
+}
+
+// Earlier versions kept raw FIT cadence (often half the SPM shown by Garmin).
+// Convert only old records; marked records are never converted twice.
+function migrateCadenceRun(run){
+  if(run.cadenceSpmV===1)return run;
+  return {...run,cadence:cadenceSpm(run.cadence),points:(run.points||[]).map(p=>({...p,cadence:cadenceSpm(p.cadence)})),cadenceSpmV:1};
+}
+
+
+
+
+const toNum = (value) => Number.isFinite(Number(value)) && value !== '' && value != null ? Number(value) : null;
+const asDate = (v) => {
+  if (!v) return null;
+  const d = v instanceof Date ? v : new Date(v);
+  return Number.isFinite(d.getTime()) ? d : null;
+};
+const avg = (items) => items.length ? items.reduce((a,b) => a + b, 0) / items.length : null;
+
+function gcDistance(a, b) { // Haversine in meters.
+  if (![a?.lat, a?.lon, b?.lat, b?.lon].every(Number.isFinite)) return 0;
+  const rad = Math.PI / 180, dLat = (b.lat-a.lat)*rad, dLon = (b.lon-a.lon)*rad;
+  const h = Math.sin(dLat/2)**2 + Math.cos(a.lat*rad)*Math.cos(b.lat*rad)*Math.sin(dLon/2)**2;
+  return 6371000*2*Math.atan2(Math.sqrt(h), Math.sqrt(1-h));
+}
+function coord(v) {
+  if (v == null || !Number.isFinite(Number(v))) return null;
+  const value = Number(v);
+  return Math.abs(value) > 180 ? value * (180 / 2147483648) : value;
+}
+function decimate(points, max = 650) {
+  if (points.length <= max) return points;
+  const newPoints = [];
+  for (let i=0; i<max; i++) newPoints.push(points[Math.round(i * (points.length-1) / (max-1))]);
+  return newPoints;
+}
+function timeBetween(start, end) {
+  return (asDate(end)?.getTime() ?? 0) - (asDate(start)?.getTime() ?? 0);
+}
+function normalizeRecords(rawPoints, startFallback) {
+  let distance = 0, prev = null;
+  const sorted = rawPoints.filter(p=>asDate(p.timestamp)).sort((a,b)=>timeBetween(b.timestamp,a.timestamp));
+  const start = asDate(sorted[0]?.timestamp) || asDate(startFallback) || new Date();
+  const points = [];
+  for (const p of sorted) {
+    const lat = Number.isFinite(p.lat) ? p.lat : null;
+    const lon = Number.isFinite(p.lon) ? p.lon : null;
+    const t = Math.max(0, (asDate(p.timestamp).getTime() - start.getTime()) / 1000);
+    const measuredDistance = toNum(p.distance);
+    if (measuredDistance != null && measuredDistance >= distance) distance = measuredDistance;
+    else if (prev && lat != null && lon != null) {
+      const step = gcDistance({lat,lon}, prev);
+      if (step < 150) distance += step; // Ignore wild GPS jumps.
+    }
+    const hr = toNum(p.hr);
+    const elev = toNum(p.elev);
+    const cad = toNum(p.cadence);
+    points.push({ t: Math.round(t), d: Math.round(distance), hr: hr != null && hr>0? Math.round(hr):null, elev, lat, lon, cadence: cad, speed: toNum(p.speed) });
+    if (lat != null && lon != null) prev = {lat,lon};
+  }
+  return {start, points, distance};
+}
+
+function toRun({ fileName, source, date, distanceMeters, durationSeconds, avgHr, maxHr, cadence, ascent, points=[], laps=[] }) {
+  const start = asDate(date);
+  const km = Number(distanceMeters)/1000, seconds=Number(durationSeconds);
+  if (!start || !Number.isFinite(km) || km < 0.08 || !Number.isFinite(seconds) || seconds < 10) {
+    throw new Error('Soubor neobsahuje platný čas, vzdálenost nebo datum běhu.');
+  }
+  return {
+    id: `${start.toISOString()}_${Math.round(distanceMeters)}_${Math.round(seconds)}`,
+    cadenceSpmV:1, date: start.toISOString(), distanceKm: Math.round(km*1000)/1000, durationS: Math.round(seconds),
+    avgHr: toNum(avgHr), maxHr: toNum(maxHr), cadence: toNum(cadence), ascent: toNum(ascent),
+    fileName, source, points: decimate(points), laps: laps.filter(x => x.distanceKm > .08 && x.durationS > 10)
+  };
+}
+
+async function parseFIT(file) {
+  const bytes = new Uint8Array(await file.arrayBuffer());
+  const stream = Stream.fromByteArray(bytes);
+  if (!Decoder.isFIT(stream)) throw new Error('Soubor FIT má nesprávnou hlavičku.');
+  const decoder = new Decoder(stream);
+  const { messages, errors } = decoder.read();
+  const session = messages.sessionMesgs?.find(m => !m.sport || String(m.sport).toLowerCase().includes('run')) || messages.sessionMesgs?.[0] || {};
+  if (session.sport && !String(session.sport).toLowerCase().includes('run') && session.sport !== 'generic') {
+    throw new Error('FIT obsahuje jiný sport než běh.');
+  }
+  const raw = (messages.recordMesgs || []).map(r => ({
+    timestamp:r.timestamp, distance:r.distance, hr:r.heartRate,
+    elev:r.enhancedAltitude ?? r.altitude, speed:r.enhancedSpeed ?? r.speed,
+    cadence:cadenceSpm((toNum(r.cadence) ?? 0)+(toNum(r.fractionalCadence) ?? 0)), lat:coord(r.positionLat),lon:coord(r.positionLong)
+  }));
+  const parsed = normalizeRecords(raw, session.startTime || messages.activityMesgs?.[0]?.timestamp);
+  const dur = toNum(session.totalTimerTime) ?? toNum(session.totalElapsedTime) ?? (parsed.points.at(-1)?.t ?? 0);
+  const distance = toNum(session.totalDistance) ?? parsed.distance;
+  const hrs = parsed.points.map(p => p.hr).filter(x => x != null);
+  const start = asDate(session.startTime) || parsed.start;
+  const laps = (messages.lapMesgs || []).map(l=>({
+    distanceKm:(toNum(l.totalDistance)||0)/1000,
+    durationS:toNum(l.totalTimerTime) ?? toNum(l.totalElapsedTime) ?? 0,
+    avgHr:toNum(l.avgHeartRate)
+  }));
+  if (!distance && errors?.length) throw new Error('Data FIT nelze přečíst: ' + String(errors[0]).slice(0,100));
+  return toRun({fileName:file.name,source:'FIT',date:start,distanceMeters:distance,durationSeconds:dur,avgHr:session.avgHeartRate ?? avg(hrs),maxHr:session.maxHeartRate ?? (hrs.length? Math.max(...hrs):null),cadence:cadenceSpm((toNum(session.avgRunningCadence) ?? toNum(session.avgCadence) ?? 0)+(toNum(session.avgFractionalCadence) ?? 0)),ascent:session.totalAscent,points:parsed.points,laps});
+}
+
+function xmlDoc(xml) {
+  const dom = new DOMParser().parseFromString(xml, 'application/xml');
+  if (dom.querySelector('parsererror')) throw new Error('Soubor XML není platný.');
+  return dom;
+}
+const kids = (node, tag) => Array.from(node?.getElementsByTagName('*') || []).filter(x=>x.localName?.toLowerCase() === tag.toLowerCase());
+const first = (node, tag) => kids(node, tag)[0];
+const val = (node, tag) => first(node, tag)?.textContent?.trim() || null;
+
+async function parseTCX(file) {
+  const dom = xmlDoc(await file.text());
+  const activity = first(dom,'Activity');
+  if (!activity) throw new Error('TCX neobsahuje aktivitu.');
+  const sport = activity.getAttribute('Sport');
+  if (sport && !/run/i.test(sport)) throw new Error('TCX neobsahuje běžeckou aktivitu.');
+  const trackPoints = kids(activity,'Trackpoint').map(p=>({
+    timestamp:val(p,'Time'), distance:toNum(val(p,'DistanceMeters')),
+    hr:toNum(val(p,'Value')), elev:toNum(val(p,'AltitudeMeters')),
+    lat:toNum(val(p,'LatitudeDegrees')),lon:toNum(val(p,'LongitudeDegrees')),
+    cadence:cadenceSpm(val(p,'RunCadence') ?? val(p,'Cadence')),speed:toNum(val(p,'Speed'))
+  }));
+  const parsed = normalizeRecords(trackPoints, val(activity,'Id'));
+  const laps = kids(activity,'Lap').map(l=>({distanceKm:(toNum(val(l,'DistanceMeters'))||0)/1000,durationS:toNum(val(l,'TotalTimeSeconds'))||0,avgHr:toNum(val(first(l,'AverageHeartRateBpm'),'Value'))}));
+  const distance = laps.reduce((sum,l)=>sum+l.distanceKm*1000,0) || parsed.distance;
+  const dur = laps.reduce((sum,l)=>sum+l.durationS,0) || parsed.points.at(-1)?.t;
+  const hrs = parsed.points.map(p=>p.hr).filter(x=>x!=null);
+  const elevations = parsed.points.map(p=>p.elev).filter(x=>x!=null);
+  const ascent = elevations.reduce((sum,v,i)=> i&&v>elevations[i-1] ? sum+v-elevations[i-1] :sum, 0);
+  return toRun({fileName:file.name,source:'TCX',date:val(activity,'Id')||parsed.start,distanceMeters:distance,durationSeconds:dur,avgHr:avg(hrs),maxHr:hrs.length?Math.max(...hrs):null,cadence:avg(parsed.points.map(p=>p.cadence).filter(x=>x!=null)),ascent,points:parsed.points,laps});
+}
+
+async function parseGPX(file) {
+  const dom = xmlDoc(await file.text());
+  const pts = kids(dom,'trkpt');
+  if (!pts.length) throw new Error('GPX neobsahuje záznamy trasy (trkpt).');
+  const raw = pts.map(p => ({
+    timestamp:val(p,'time'),lat:toNum(p.getAttribute('lat')),lon:toNum(p.getAttribute('lon')),
+    elev:toNum(val(p,'ele')), hr:toNum(val(p,'hr')),cadence:cadenceSpm(val(p,'cad'))
+  }));
+  if (!raw.some(p=>p.timestamp)) throw new Error('GPX postrádá časové značky.');
+  const parsed = normalizeRecords(raw);
+  const hrs = parsed.points.map(p=>p.hr).filter(x=>x!=null);
+  const elevations = parsed.points.map(p=>p.elev).filter(x=>x!=null);
+  const ascent = elevations.reduce((sum,v,i)=>i&&v>elevations[i-1] ? sum+v-elevations[i-1] :sum,0);
+  return toRun({fileName:file.name,source:'GPX',date:parsed.start,distanceMeters:parsed.distance,durationSeconds:parsed.points.at(-1)?.t,avgHr:avg(hrs),maxHr:hrs.length?Math.max(...hrs):null,cadence:avg(parsed.points.map(p=>p.cadence).filter(x=>x!=null)),ascent,points:parsed.points});
+}
+
+function splitCSV(text, sep) {
+  const rows=[]; let row=[], part='', inside=false;
+  for (let i=0;i<text.length;i++) {
+    const c=text[i];
+    if (c==='"') {if (inside && text[i+1]==='"') {part+='"'; i++;} else inside=!inside;}
+    else if (c===sep && !inside) {row.push(part); part='';}
+    else if ((c==='\r'||c==='\n') && !inside) {if (c==='\r'&&text[i+1]==='\n') i++;row.push(part);if(row.some(x=>x.trim()))rows.push(row);row=[];part='';}
+    else part+=c;
+  }
+  row.push(part);if(row.some(x=>x.trim()))rows.push(row);
+  return rows;
+}
+function parseNumeric(input) {
+  if (input == null) return null;
+  let s=String(input).trim().replace(/\s/g,'').replace(/[km%]/gi,'');
+  if (!s || s==='--') return null;
+  if (s.includes(',') && s.includes('.')) s = s.lastIndexOf(',')>s.lastIndexOf('.') ? s.replace(/\./g,'').replace(',','.') : s.replace(/,/g,'');
+  else if (s.includes(',')) s=s.replace(',','.');
+  const n=Number(s);return Number.isFinite(n)?n:null;
+}
+function parseDuration(value) {
+  if (value == null) return null;
+  const s=String(value).trim();
+  if (/^\d+(?:\.\d+)?$/.test(s)) return Number(s); // raw seconds
+  const parts=s.split(':').map(Number);
+  if (![2,3].includes(parts.length) || !parts.every(Number.isFinite)|| parts.some(x=>x<0)) return null;
+  if (parts.length===2) return parts[0]*60+parts[1];
+  return parts[0]*3600+parts[1]*60+parts[2];
+}
+function parseCSVDate(value) {
+  const s=String(value||'').trim();
+  const common=asDate(s);if(common)return common;
+  const m=s.match(/^(\d{1,2})[.\/]\s*(\d{1,2})[.\/]\s*(\d{4})(?:\s+(\d{1,2}):(\d\d)(?::(\d\d))?)?/);
+  if(m)return new Date(Number(m[3]),Number(m[2])-1,Number(m[1]),Number(m[4]||12),Number(m[5]||0),Number(m[6]||0));
+  return null;
+}
+async function parseCSV(file) {
+  const text=(await file.text()).replace(/^\uFEFF/,'');
+  const line=text.split(/\r?\n/)[0]||'';
+  const sep=(line.match(/;/g)||[]).length>(line.match(/,/g)||[]).length?';':',';
+  const rows=splitCSV(text,sep);
+  if(rows.length<2)throw new Error('CSV neobsahuje tabulku aktivit.');
+  const headers=rows.shift().map(s=>s.trim().toLowerCase());
+  const index = (...terms)=>headers.findIndex(h=>terms.some(t=>h===t || h.includes(t)));
+  const dateI=index('date','datum');const distanceI=index('distance','vzdálenost');const timeI=index('time','doba','čas');
+  const sportI=index('activity type','typ aktivity','sport');const hrI=index('avg hr','average heart rate','průměrný tep');
+  const ascentI=index('total ascent','celkové stoupání');const cadenceI=index('avg run cadence','average run cadence','průměrná kadence','avg cadence','cadence','kadence');
+  if (dateI<0||distanceI<0||timeI<0) throw new Error('CSV nemá rozpoznatelné sloupce Datum, Vzdálenost a Čas. Nejlépe použij FIT nebo TCX.');
+  const output=[];
+  for(const cells of rows) {
+    if(sportI>=0 && cells[sportI] && !/běh|running|run/i.test(cells[sportI]))continue;
+    const date=parseCSVDate(cells[dateI]); const km=parseNumeric(cells[distanceI]);
+    const duration=parseDuration(cells[timeI]);
+    if(!date||!km||!duration) continue;
+    try {output.push(toRun({fileName:file.name,source:'CSV',date,distanceMeters:km*1000,durationSeconds:duration,avgHr:hrI>=0?parseNumeric(cells[hrI]):null,ascent:ascentI>=0?parseNumeric(cells[ascentI]):null,cadence:cadenceI>=0?cadenceSpm(parseNumeric(cells[cadenceI])):null}));} catch { /* skip malformed row */ }
+  }
+  if(!output.length)throw new Error('V CSV nebyly rozpoznány žádné běžecké aktivity.');
+  return output;
+}
+
+async function parseFile(file) {
+  const ext = file.name.split('.').at(-1).toLowerCase();
+  if(file.size>40*1024*1024)throw new Error('Soubor je příliš velký (maximum 40 MB).');
+  if(ext==='zip') {
+    let entries;
+    try {entries=unzipSync(new Uint8Array(await file.arrayBuffer()), {
+      filter: x => /\.(fit|tcx|gpx|csv|json)$/i.test(x.name) && x.originalSize <= 40*1024*1024
+    });} catch {throw new Error('ZIP není platný nebo je poškozený.');}
+    const contents = Object.entries(entries).filter(([name])=>/\.(fit|tcx|gpx|csv|json)$/i.test(name)).slice(0,50);
+    if(!contents.length) throw new Error('ZIP neobsahuje podporované soubory FIT, TCX, GPX, CSV či JSON.');
+    const output=[]; const problems=[];
+    for(const [name, bytes] of contents) {
+      try {
+        output.push(...await parseFile(new File([bytes], name.split('/').at(-1), {type:'application/octet-stream'})));
+      } catch(e) {problems.push(name+': '+e.message);}
+    }
+    if(!output.length)throw new Error('V ZIP se nepodařilo načíst žádný běh. '+(problems[0]||''));
+    return output;
+  }
+  if(ext==='fit')return [await parseFIT(file)];
+  if(ext==='tcx')return [await parseTCX(file)];
+  if(ext==='gpx')return [await parseGPX(file)];
+  if(ext==='csv')return await parseCSV(file);
+  if(ext==='json'){
+    const obj=JSON.parse(await file.text());
+    const list=Array.isArray(obj)?obj:obj.runs;
+    if(!Array.isArray(list))throw new Error('JSON není záloha Běžeckého kompasu.');
+    const valid=list.filter(r=>r && asDate(r.date) && Number(r.distanceKm)>.08 && Number(r.durationS)>10)
+      .map(r=>({...r, id:String(r.id || `${r.date}_${r.distanceKm}_${r.durationS}`),distanceKm:Number(r.distanceKm),durationS:Number(r.durationS),points:Array.isArray(r.points)?decimate(r.points):[],laps:Array.isArray(r.laps)?r.laps:[],source:r.source||'Záloha',fileName:r.fileName||'Záloha JSON'}));
+    if(!valid.length)throw new Error('V záloze nebyly nalezeny platné běhy.');
+    return valid.map(migrateCadenceRun);
+  }
+  throw new Error('Podporuji soubory .fit, .tcx, .gpx, .csv, .json a .zip.');
+}
+
+function makeManualRun({date,km,seconds,hr,cadence}) {
+  return toRun({fileName:'Ručně přidaný běh',source:'RUČNĚ',date:new Date(date),distanceMeters:km*1000,durationSeconds:seconds,avgHr:hr||null,cadence:cadence||null});
+}
+
+const DB_NAME='bezecky-kompas-db';
+const STORE='runs';
+function dbOpen() {
+  return new Promise((resolve,reject)=>{
+    const request=indexedDB.open(DB_NAME,1);
+    request.onupgradeneeded=()=>{if(!request.result.objectStoreNames.contains(STORE))request.result.createObjectStore(STORE,{keyPath:'id'});};
+    request.onsuccess=()=>resolve(request.result);
+    request.onerror=()=>reject(request.error);
+  });
+}
+async function dbOperation(mode, callback){
+  const db=await dbOpen();
+  return new Promise((resolve,reject)=>{
+    const tx=db.transaction(STORE,mode);const request=callback(tx.objectStore(STORE));
+    request.onsuccess=()=>resolve(request.result);
+    request.onerror=()=>reject(request.error);
+    tx.oncomplete=()=>db.close();
+    tx.onerror=()=>{db.close();reject(tx.error);};
+  });
+}
+async function loadRuns(){return (await dbOperation('readonly',st=>st.getAll())).sort((a,b)=>b.date.localeCompare(a.date));}
+async function saveRun(run){return dbOperation('readwrite',st=>st.put(run));}
+async function deleteRun(id){return dbOperation('readwrite',st=>st.delete(id));}
+async function clearRuns(){return dbOperation('readwrite',st=>st.clear());}
+
+
+
+
+
+
+
+const $=(id)=>document.getElementById(id);
+const escapeHtml=s=>String(s??'').replace(/[&<>"']/g,c=>({'&':'&amp;','<':'&lt;','>':'&gt;','"':'&quot;',"'":'&#39;'}[c]));
+const clamp=(n,min,max)=>Math.min(max,Math.max(min,n));
+const round1=n=>(Math.round(n*10)/10).toLocaleString('cs-CZ',{maximumFractionDigits:1});
+const fmtDate=(v,options={day:'numeric',month:'short',year:'numeric'})=>new Intl.DateTimeFormat('cs-CZ',options).format(new Date(v));
+const fmtShort=v=>fmtDate(v,{day:'numeric',month:'numeric'});
+const num=n=>Number.isFinite(Number(n)) && n!=null?Number(n):null;
+function duration(seconds){
+  if(!Number.isFinite(seconds)||seconds<0) return '–';
+  const s=Math.round(seconds),h=Math.floor(s/3600),m=Math.floor((s%3600)/60),sec=s%60;
+  return h?`${h}:${String(m).padStart(2,'0')}:${String(sec).padStart(2,'0')}`:`${m}:${String(sec).padStart(2,'0')}`;
+}
+function pace(secPerKm){return Number.isFinite(secPerKm)&&secPerKm>0&&secPerKm<3600?duration(secPerKm):'–';}
+function paceOf(run){return run.distanceKm>0?run.durationS/run.distanceKm:null;}
+function startOfWeek(date){const d=new Date(date);d.setHours(0,0,0,0);d.setDate(d.getDate()-(d.getDay()+6)%7);return d;}
+function plusDays(date,n){const d=new Date(date);d.setDate(d.getDate()+n);return d;}
+function sum(xs, fn=x=>x){return xs.reduce((acc,x)=>acc+(Number(fn(x))||0),0);}
+let runs=[], selectedId=null, period='30', goal=Number(localStorage.getItem('bezecky-kompas-goal'))||20;
+const DEFAULT_ZONES={maxHr:185,thresholds:[60,70,80,90]}; // Initial example, NOT a measured maximum.
+function loadZoneSettings(){
+  try{
+    const x=JSON.parse(localStorage.getItem('bezecky-kompas-zone-settings'));
+    if(x && Number.isFinite(x.maxHr) && x.maxHr>=120 && x.maxHr<=230 && Array.isArray(x.thresholds) && x.thresholds.length===4 && x.thresholds.every((n,i)=>Number.isFinite(n)&&n>=40&&n<=96&&(i===0||n>x.thresholds[i-1]+4)))return x;
+  }catch{}
+  return {...DEFAULT_ZONES,thresholds:[...DEFAULT_ZONES.thresholds]};
+}
+let zoneSettings=loadZoneSettings();
+let charts={};let toastTimer;
+
+function buildDemo(){
+  const today=new Date();today.setHours(7,30,0,0);
+  const specs=[[-43,4.8,34.2,153],[-36,6.3,43.4,149],[-29,5.2,34.2,146],[-24,7.3,48.3,150],[-18,4.5,28.7,143],[-13,8.1,52.4,145],[-8,5.4,34.0,144],[-4,6.2,38.1,141],[-1,9.0,56.2,147]];
+  return specs.map(([days,km,min,hr],i)=>{
+    const date=plusDays(today,days).toISOString();const seconds=min*60;
+    const pts=Array.from({length:85},(_,j)=>({t:Math.round(seconds*j/84),d:Math.round(km*1000*j/84),hr:Math.round(hr-9+9*j/84+3*Math.sin(j/9)),cadence:Math.round(163+i+3*Math.sin(j/8)),elev:208+8*Math.sin(j/11),lat:null,lon:null}));
+    return {id:`demo-${i}`,date,distanceKm:km,durationS:seconds,avgHr:hr,maxHr:hr+14,ascent:Math.round(km*7),cadence:163+i,source:'UKÁZKA',fileName:'Ukázkové údaje',points:pts,laps:[]};
+  }).sort((a,b)=>b.date.localeCompare(a.date));
+}
+const currentRuns=()=>runs.length?runs:buildDemo();
+const demo=()=>runs.length===0;
+function filterPeriod(data){
+  if(period==='all')return data;
+  const floor=new Date();floor.setHours(0,0,0,0);floor.setDate(floor.getDate()-Number(period)+1);
+  return data.filter(r=>new Date(r.date)>=floor);
+}
+function toast(msg,isError=false){
+  const t=$('toast');clearTimeout(toastTimer);t.textContent=msg;t.classList.toggle('error',isError);t.classList.add('visible');toastTimer=setTimeout(()=>t.classList.remove('visible'),4700);
+}
+function setText(id,value){$(id).textContent=value;}
+function weeklyKm(data){
+  const current=startOfWeek(new Date());
+  return Array.from({length:8},(_,i)=>{
+    const week=plusDays(current, (i-7)*7), end=plusDays(week,7);
+    return {label:fmtShort(week),km:sum(data.filter(r=>new Date(r.date)>=week&&new Date(r.date)<end),r=>r.distanceKm)};
+  });
+}
+const colors={ticks:'#829eaa',line:'#304550',lime:'#d9fd71',aqua:'#65ddce'};
+function chartDefaults(){return {responsive:true,maintainAspectRatio:false,interaction:{mode:'index',intersect:false},plugins:{legend:{display:false},tooltip:{backgroundColor:'#0c1822',titleColor:'#e9f5f2',bodyColor:'#c2e9da',borderColor:'#42665c',borderWidth:1,padding:10}},scales:{x:{grid:{display:false},ticks:{color:colors.ticks,maxRotation:0,font:{size:10}}},y:{beginAtZero:true,grid:{color:colors.line},border:{display:false},ticks:{color:colors.ticks,font:{size:10}}}}}};
+function resetChart(key,ctx,config){if(charts[key])charts[key].destroy();charts[key]=new Chart(ctx,config);}
+function renderCharts(data){
+  const weekly=weeklyKm(data);
+  resetChart('weekly',$('weeklyChart'),{type:'bar',data:{labels:weekly.map(w=>w.label),datasets:[{data:weekly.map(w=>Number(w.km.toFixed(1))),backgroundColor:weekly.map((_,i)=>i===7?'#d9fd71':'#40625e'),hoverBackgroundColor:'#b9ed8e',borderRadius:6,barPercentage:.63,categoryPercentage:.95}]},options:{...chartDefaults(),plugins:{...chartDefaults().plugins,tooltip:{...chartDefaults().plugins.tooltip,callbacks:{label:c=>`${c.parsed.y.toLocaleString('cs-CZ')} km`}}},scales:{...chartDefaults().scales,y:{...chartDefaults().scales.y,ticks:{...chartDefaults().scales.y.ticks,callback:v=>`${v} km`}}}}});
+  const past=data.slice().sort((a,b)=>a.date.localeCompare(b.date)).slice(-12);
+  resetChart('pace',$('paceChart'),{type:'line',data:{labels:past.map(r=>fmtShort(r.date)),datasets:[{data:past.map(r=>Number((paceOf(r)/60).toFixed(2))),borderColor:'#65ddce',backgroundColor:'#65ddce20',borderWidth:2.7,tension:.35,fill:true,pointBackgroundColor:'#d9fd71',pointBorderColor:'#d9fd71',pointRadius:3,pointHoverRadius:5}]},options:{...chartDefaults(),plugins:{...chartDefaults().plugins,tooltip:{...chartDefaults().plugins.tooltip,callbacks:{label:c=>`${pace(Math.round(c.parsed.y*60))} min/km`}}},scales:{...chartDefaults().scales,y:{...chartDefaults().scales.y,beginAtZero:false,reverse:true,ticks:{...chartDefaults().scales.y.ticks,callback:v=>pace(Math.round(v*60))}}}}});
+}
+function validHeartRun(r){
+  const hr=num(r.avgHr),p=paceOf(r),km=num(r.distanceKm),time=num(r.durationS);
+  return hr!=null&&hr>=70&&hr<=215&&Number.isFinite(p)&&p>=210&&p<=900&&km>=2&&time>=600;
+}
+function matchingHeartRuns(data){
+  const eligible=data.filter(validHeartRun).slice().sort((a,b)=>b.date.localeCompare(a.date)).slice(0,100);
+  let fallback=null;
+  for(const anchor of eligible.slice(0,25)){
+    const basePace=paceOf(anchor),slope=anchor.ascent!=null&&num(anchor.ascent)!=null?Number(anchor.ascent)/anchor.distanceKm:null;
+    const matches=eligible.filter(r=>{
+      const ratio=r.distanceKm/anchor.distanceKm;
+      if(Math.abs(paceOf(r)-basePace)>Math.max(15,basePace*.045)||ratio<.75||ratio>1.33)return false;
+      const otherSlope=r.ascent!=null&&num(r.ascent)!=null?Number(r.ascent)/r.distanceKm:null;
+      return slope==null||otherSlope==null||Math.abs(otherSlope-slope)<=8;
+    }).slice(0,12).sort((a,b)=>a.date.localeCompare(b.date));
+    if(matches.length>=3)return {matches,eligible,comparable:true};
+    if(matches.length>=2&&!fallback)fallback=matches;
+  }
+  return fallback?{matches:fallback,eligible,comparable:true}:{matches:eligible.slice(0,12).reverse(),eligible,comparable:false};
+}
+function renderHeartComparison(data){
+  const result=matchingHeartRuns(data),series=result.matches;
+  const validCount=result.eligible.length;
+  const paired=result.comparable;
+  const first=series[0],last=series[series.length-1];
+  const tagline=$('hrCompareTag');
+  tagline.textContent=paired?`${series.length} SROVNATELNÝCH BĚHŮ`:'CELKOVÝ PŘEHLED';
+  const labels=series.map(r=>fmtShort(r.date));
+  resetChart('heartCompare',$('hrCompareChart'),{type:'line',data:{labels,datasets:[{label:'Průměrný tep',data:series.map(r=>Number(r.avgHr)),borderColor:paired?'#65ddce':'#87a6ae',backgroundColor:paired?'#65ddce24':'#87a6ae12',fill:true,borderWidth:2.6,tension:.28,pointRadius:4,pointHoverRadius:6,pointBackgroundColor:paired?'#d9fd71':'#87a6ae',pointBorderColor:paired?'#d9fd71':'#87a6ae'}]},options:{...chartDefaults(),plugins:{...chartDefaults().plugins,tooltip:{...chartDefaults().plugins.tooltip,callbacks:{label:c=>`${Math.round(c.parsed.y)} tepů/min`,afterLabel:c=>`Tempo: ${pace(paceOf(series[c.dataIndex]))} min/km · ${round1(series[c.dataIndex].distanceKm)} km`}}},scales:{...chartDefaults().scales,y:{...chartDefaults().scales.y,beginAtZero:false,ticks:{...chartDefaults().scales.y.ticks,precision:0,callback:v=>`${v} bpm`}}}}});
+  if(!validCount){
+    setText('hrCompareDelta','–');setText('hrCompareSub','Zatím nejsou dostupná tepová data.');
+    setText('hrCompareMessage','Nahraj běh z Garminu se zaznamenaným tepem (obvykle FIT nebo TCX), případně přidej průměrný tep ručně.');
+    setText('hrCompareCriteria','Pro srovnání je potřeba alespoň 2 km běhu a záznam průměrného tepu.');
+    return;
+  }
+  if(!paired){
+    setText('hrCompareDelta','–');setText('hrCompareSub',`${validCount} běhů s použitelným tepem`);
+    setText('hrCompareMessage','Graf ukazuje tep jednotlivých běhů. Zatím nejsou alespoň dva dost podobné na poctivé porovnání při stejném tempu.');
+    setText('hrCompareCriteria','Pro srovnání hledáme podobné tempo (±4,5 %), vzdálenost a, pokud je známo, převýšení.');
+    return;
+  }
+  const delta=Math.round(last.avgHr-first.avgHr),abs=Math.abs(delta);
+  setText('hrCompareDelta',`${delta>0?'+':delta<0?'−':''}${abs} bpm`);
+  setText('hrCompareSub',`${Math.round(first.avgHr)} → ${Math.round(last.avgHr)} bpm · ${fmtShort(first.date)} až ${fmtShort(last.date)}`);
+  const comment=abs<5
+    ?'Průměrný tep je u srovnatelných běhů podobný. Malý rozdíl sám o sobě neprokazuje změnu kondice.'
+    :delta<0
+      ?'Při podobném tempu byl poslední tep nižší. Může to ukazovat na lepší aerobní efektivitu, ale výsledek ověř na dalších bězích.'
+      :'Při podobném tempu byl poslední tep vyšší. Mohou za tím být únava, horko či jiná zátěž; jeden trend neznamená zhoršení kondice.';
+  setText('hrCompareMessage',comment+(series.length===2?' Srovnání zatím vychází pouze ze dvou běhů.':''));
+  setText('hrCompareCriteria',`Srovnáváme ${series.length} běhy s podobným tempem (okolo ${pace(paceOf(last))} min/km), vzdáleností a dostupným převýšením. Tep je průměr za celý běh.`);
+}
+
+
+function usableCadenceValue(value){const n=num(value);return n!=null&&n>=80&&n<=260?n:null;}
+function zoneRanges(){
+  const b=zoneBoundaries(zoneSettings);
+  return [`< ${b[0]}`,`${b[0]}–${b[1]-1}`,`${b[1]}–${b[2]-1}`,`${b[2]}–${b[3]-1}`,`${b[3]}+`];
+}
+function zoneRows(seconds){
+  const total=sum(seconds),ranges=zoneRanges();
+  return seconds.map((s,i)=>{
+    const pct=total?s/total*100:0;
+    return `<div class="zone-row"><span class="zone-label"><i style="background:${ZONE_COLORS[i]}"></i>${ZONE_LABELS[i]}</span><span class="zone-range">${ranges[i]} bpm</span><div class="zone-track"><span style="background:${ZONE_COLORS[i]};width:${pct.toFixed(2)}%"></span></div><strong class="zone-duration">${duration(s)} <small>(${Math.round(pct)} %)</small></strong></div>`;
+  }).join('');
+}
+function renderZones(data){
+  const parts=data.map(r=>zoneSeconds(r.points||[],zoneSettings));
+  const seconds=[0,0,0,0,0];
+  parts.forEach(p=>p.seconds.forEach((s,i)=>seconds[i]+=s));
+  const total=sum(seconds);
+  $('zoneRows').innerHTML=zoneRows(seconds);
+  setText('zoneMaxLabel',`Zadané maximum ${zoneSettings.maxHr} bpm · zóny podle nastavení`);
+  const hrRuns=data.filter(r=>num(r.avgHr)!=null&&r.avgHr>0);
+  if(!total){
+    setText('zoneHeadline','–');
+    setText('zoneText',hrRuns.length?'Z aktivit je dostupný jen průměrný tep. Pro čas v zónách nahraj FIT, TCX nebo GPX s průběžnými hodnotami tepu.':'Nahraj soubor s průběžnými záznamy tepu a uvidíš, kolik času jsi strávil v každé z pěti zón.');
+    setText('zoneCoverage','Žádný spolehlivý časový průběh tepu.');
+    return;
+  }
+  const easy=seconds[0]+seconds[1],easyPct=Math.round(easy/total*100),main=seconds.indexOf(Math.max(...seconds));
+  setText('zoneHeadline',`${easyPct} % v Z1–Z2`);
+  setText('zoneText',easyPct>=70?'V zaznamenaném čase převažovalo lehčí úsilí. Pro vytrvalostní běhy to může být užitečné.':`Nejvíc zaznamenaného času připadá na ${ZONE_LABELS[main]} (${ZONE_NAMES[main].toLowerCase()} intenzita). Při hodnocení zohledni typ tréninku a správné hranice zón.`);
+  setText('zoneCoverage',`Vyhodnoceno ${duration(total)} ze ${data.length} běhů. Chybějící tep a delší výpadky záznamu nejsou do procent započítány.`);
+}
+function renderCadence(data){
+  const series=data.filter(r=>runCadence(r)!=null).slice().sort((a,b)=>a.date.localeCompare(b.date)).slice(-12);
+  const values=series.map(r=>runCadence(r));
+  resetChart('cadence',$('cadenceChart'),{type:'line',data:{labels:series.map(r=>fmtShort(r.date)),datasets:[{label:'Kadence (kroky/min)',data:values.map(v=>Number(v.toFixed(1))),borderColor:'#e5ca82',backgroundColor:'#e5ca821f',fill:true,pointRadius:4,pointBackgroundColor:'#d9fd71',borderWidth:2.7,tension:.25}]},options:{...chartDefaults(),plugins:{...chartDefaults().plugins,tooltip:{...chartDefaults().plugins.tooltip,callbacks:{label:c=>`${Math.round(c.parsed.y)} kroků/min`,afterLabel:c=>`Tempo: ${pace(paceOf(series[c.dataIndex]))} min/km`}}},scales:{...chartDefaults().scales,y:{...chartDefaults().scales.y,beginAtZero:false,ticks:{...chartDefaults().scales.y.ticks,callback:v=>`${v} spm`}}}}});
+  if(!series.length){setText('cadenceAvg','–');setText('cadenceInfo','Zatím nemáš data o kadenci. Nejlépe je získáš importem FIT nebo TCX.');setText('cadenceDetailInfo','Kadence znamená kroky obou nohou za minutu (SPM).');return;}
+  const weighted=sum(series,r=>runCadence(r)*r.durationS)/sum(series,r=>r.durationS);
+  setText('cadenceAvg',`${Math.round(weighted)} spm`);
+  setText('cadenceInfo',`${series.length} běhů s kadencí · nejnovější ${Math.round(values.at(-1))} spm.`);
+  const paces=series.map(paceOf),minP=Math.min(...paces),maxP=Math.max(...paces);
+  setText('cadenceDetailInfo',maxP-minP>25?'Kadence se často mění spolu s tempem. Pro smysluplné porovnání vyber běhy podobné rychlosti.':'Tempa vybraných běhů jsou relativně podobná; sleduj, zda se kadence mění postupně, ne jen po jednom běhu.');
+}
+
+function renderMetrics(selected){
+  const dist=sum(selected,r=>r.distanceKm),secs=sum(selected,r=>r.durationS);
+  const hrRuns=selected.filter(r=>num(r.avgHr)!=null&&r.avgHr>0);
+  const hrWeight=sum(hrRuns,r=>r.durationS);
+  const meanHr=hrWeight?sum(hrRuns,r=>r.avgHr*r.durationS)/hrWeight:null;
+  setText('metricDistance',round1(dist));setText('metricPace',selected.length?pace(secs/dist):'–');
+  setText('metricHr',meanHr?String(Math.round(meanHr)):'–');setText('metricRuns',String(selected.length));
+  setText('metricDistanceNote',selected.length?`${duration(secs)} celkem`:'Zatím žádné aktivity');
+  setText('metricPaceNote',selected.length?'Z celkové vzdálenosti a času':'Čeká na první běh');
+  setText('metricHrNote',hrRuns.length?`Údaje z ${hrRuns.length} z ${selected.length} běhů`:'Tep zatím chybí');
+  setText('metricRunsNote',selected.length?'Pravidelnost vítězí nad dokonalostí':'Začni prvním kilometrem');
+}
+function insight(icon,title,body,kind=''){return `<div class="insight-item"><div class="insight-icon ${kind}">${icon}</div><div><h3>${escapeHtml(title)}</h3><p>${escapeHtml(body)}</p></div></div>`;}
+function renderInsights(data){
+  const items=[];const realData=data.slice().sort((a,b)=>b.date.localeCompare(a.date));
+  if(!realData.length){$('insights').innerHTML=insight('✳','Začni prvním během','Nahraj FIT, TCX nebo GPX. Až budeš mít více záznamů, uvidíš i trendy a doporučení.');return;}
+  const now=new Date();const week=startOfWeek(now);const prev=plusDays(week,-7);
+  const thisWeek=data.filter(r=>new Date(r.date)>=week);const lastWeek=data.filter(r=>new Date(r.date)>=prev&&new Date(r.date)<week);
+  const wk=sum(thisWeek,r=>r.distanceKm),prevKm=sum(lastWeek,r=>r.distanceKm);
+  if(wk>=goal)items.push(insight('✓','Týdenní cíl splněn',`Skvělé! Tento týden máš ${round1(wk)} km z cílových ${goal} km. Dopřej si prostor také na regeneraci.`));
+  else items.push(insight('↗','Další malý krok',`Do týdenního cíle ti chybí ${round1(goal-wk)} km. Zvol si vzdálenost, která odpovídá tvému aktuálnímu stavu.`));
+  if(wk>prevKm*1.25&&prevKm>=5)items.push(insight('!','Pozor na rychlé navyšování',`Objem vzrostl z ${round1(prevKm)} km minulý týden na ${round1(wk)} km nyní. Rychlý nárůst může zvyšovat zátěž; zařaď lehčí dny.`,'orange'));
+  else if(prevKm>=5&&wk>0)items.push(insight('◎','Sleduj pravidelnost',`Minulý týden ${round1(prevKm)} km, zatím tento týden ${round1(wk)} km. Důležitější než jednorázový rekord je dlouhodobý rytmus.`,'blue'));
+  else items.push(insight('◎','Konzistence je tvoje výhoda','Pokud se dostaneš ven i na kratší klus, buduješ návyk. Ne každý běh musí být rychlý.','blue'));
+  if(realData.length>=6){
+    const newer=realData.slice(0,3),older=realData.slice(3,6);
+    const p1=sum(newer,r=>r.durationS)/sum(newer,r=>r.distanceKm),p0=sum(older,r=>r.durationS)/sum(older,r=>r.distanceKm);
+    const diff=p0?((p0-p1)/p0)*100:0;
+    if(diff>3)items.push(insight('↑','Tempo se zlepšuje',`Poslední tři běhy mají přibližně o ${Math.round(diff)} % rychlejší souhrnné tempo než předchozí tři. Zohledni ale také délku tras, terén a náročnost.`));
+    else if(diff< -4)items.push(insight('♡','Pomalý běh má hodnotu','Poslední běhy jsou pomalejší. Nemusí to znamenat zhoršení; snadné tempo je běžná součást vytrvalostního tréninku.','blue'));
+    else items.push(insight('→','Tempo držíš stabilně','Průměrná tempa posledních běhů se výrazně nemění. Pro posun sleduj také pocit z běhu a tep ve srovnatelných podmínkách.'));
+  } else items.push(insight('⌁','První trendy vznikají','Po šesti a více bězích může aplikace začít porovnávat novější a starší tempo.','blue'));
+  $('insights').innerHTML=items.slice(0,3).join('');
+}
+function renderGoal(data){
+  const monday=startOfWeek(new Date());const weekKm=sum(data.filter(r=>new Date(r.date)>=monday),r=>r.distanceKm);
+  const percent=Math.round(weekKm/goal*100);setText('weekDistance',round1(weekKm));setText('goalDistance',String(goal));setText('goalPercent',`${percent} %`);
+  $('goalRing').style.setProperty('--fill',`${clamp(percent,0,100)}%`);
+  setText('goalMessage',percent>=100?'Mise splněna! Každý další kilometr už je bonus.':percent>50?'Výborně! Každý další výběh tě posouvá k cíli.':'Soustřeď se na dnešní malý krok.');
+}
+function renderList(data){
+  setText('totalCount',String(data.length));
+  if(!data.length){$('runList').innerHTML='<div class="empty-state">Zatím tu nejsou žádné běhy. Nahraj první soubor Garmin nebo zapiš aktivitu ručně.</div>';return;}
+  $('runList').innerHTML=data.map(r=>`<button type="button" class="run-row ${r.id===selectedId?'active':''}" data-id="${escapeHtml(r.id)}"><span class="run-badge">↗</span><span class="run-meta"><strong>${round1(r.distanceKm)} km · ${escapeHtml(r.source)}</strong><span>${escapeHtml(fmtDate(r.date))} · ${escapeHtml(duration(r.durationS))}</span></span><span class="run-numbers"><b>${pace(paceOf(r))}</b><small>min/km</small></span></button>`).join('');
+  $('runList').querySelectorAll('.run-row').forEach(b=>b.addEventListener('click',()=>{selectedId=b.dataset.id;renderList(data);renderDetail(data);}));
+}
+function simpleRouteSvg(points){
+  const gps=points.filter(p=>num(p.lat)!=null&&num(p.lon)!=null);
+  if(gps.length<4)return '';
+  const lat=gps.map(p=>p.lat),lon=gps.map(p=>p.lon);const minLat=Math.min(...lat),maxLat=Math.max(...lat),minLon=Math.min(...lon),maxLon=Math.max(...lon);
+  const scaleX= Math.max(.000001,maxLon-minLon),scaleY=Math.max(.000001,maxLat-minLat);
+  const pad=18,W=510,H=145;
+  const adjustedX=scaleX*Math.cos(((maxLat+minLat)/2)*Math.PI/180);
+  const scale=Math.min((W-2*pad)/Math.max(adjustedX,.000001),(H-2*pad)/scaleY);
+  const halfWidth=adjustedX*scale/2,halfHeight=scaleY*scale/2;
+  const cx=W/2,cy=H/2;
+  const pairs=gps.map(p=>[cx+((p.lon-minLon)*Math.cos(((maxLat+minLat)/2)*Math.PI/180)*scale-halfWidth),cy-((p.lat-minLat)*scale-halfHeight)]);
+  const path=pairs.map((p,i)=>`${i?'L':'M'}${p[0].toFixed(1)} ${p[1].toFixed(1)}`).join(' ');
+  return `<div class="detail-subhead">NÁČRT GPS TRASY</div><div class="route-box"><svg viewBox="0 0 ${W} ${H}" role="img" aria-label="Schematický náčrt zaznamenané trasy, bez mapového podkladu"><defs><linearGradient id="line" x1="0" x2="1"><stop stop-color="#65ddce"/><stop offset="1" stop-color="#d9fd71"/></linearGradient></defs><path d="${path}" fill="none" stroke="url(#line)" stroke-width="3.2" stroke-linejoin="round" stroke-linecap="round"/><circle cx="${pairs[0][0]}" cy="${pairs[0][1]}" r="5" fill="#65ddce"/><circle cx="${pairs.at(-1)[0]}" cy="${pairs.at(-1)[1]}" r="5" fill="#d9fd71"/></svg></div><p class="help">Orientační tvar trasy, bez mapy a přesné navigace.</p>`;
+}
+function getSplitList(r){
+  if(Array.isArray(r.laps)&&r.laps.length&&r.laps.every(x=>x.durationS>10))return r.laps.slice(0,20).map((l,i)=>`${i+1}. úsek ${round1(l.distanceKm)} km · ${pace(l.durationS/l.distanceKm)}`);
+  const pts=r.points||[];if(pts.length<3)return [];
+  const splits=[];let target=1000,lastT=0;
+  for(let i=1;i<pts.length&&target<=r.distanceKm*1000;i++){
+    const a=pts[i-1],b=pts[i];if(b.d<target||b.d<=a.d)continue;
+    const t=a.t+(b.t-a.t)*(target-a.d)/(b.d-a.d);
+    splits.push(`${splits.length+1}. km · ${pace(t-lastT)}`);lastT=t;target+=1000;
+  }
+  return splits.slice(0,20);
+}
+function renderDetail(data){
+  const r=data.find(x=>x.id===selectedId)||data[0];
+  if(!r){setText('detailTitle','Vyber běh');setText('detailDate','');$('runDetailBody').innerHTML='<div class="empty-state">Detail tréninku se zobrazí tady.</div>';$('removeRun').hidden=true;return;}
+  selectedId=r.id;setText('detailTitle',`${round1(r.distanceKm)} km běh`);setText('detailDate',`${fmtDate(r.date,{weekday:'long',day:'numeric',month:'long',year:'numeric'})} · ${r.source}`);
+  $('removeRun').hidden=demo();
+  const metrics=[['KADENCE',runCadence(r)!=null?`${Math.round(runCadence(r))} spm`:'–'],['TEMPO',`${pace(paceOf(r))} /km`],['ČAS',duration(r.durationS)],['TEP',r.avgHr?`${Math.round(r.avgHr)} bpm`:'–'],['STOUPÁNÍ',num(r.ascent)!=null?`${Math.round(r.ascent)} m`:'–']];
+  const metricHtml=`<div class="detail-metrics">${metrics.map(([label,val])=>`<div class="detail-metric"><span>${label}</span><strong>${escapeHtml(val)}</strong></div>`).join('')}</div>`;
+  const samples=r.points||[];
+  let sampleHtml='';
+  if(samples.length>6){sampleHtml='<div class="detail-subhead">VÝVOJ TEPU A TEMPA BĚHEM AKTIVITY</div><div class="detail-chart"><canvas id="detailChart"></canvas></div>';
+  } else sampleHtml='<div class="no-samples">Tento záznam obsahuje jen souhrnné údaje. Podrobný graf tepu a tempa získáš typicky ze souboru FIT nebo TCX s průběžnými záznamy.</div>';
+  const z=zoneSeconds(samples,zoneSettings);
+  const zHtml=`<div class="detail-subhead">TEPOVÉ ZÓNY BĚHU</div><div class="zone-detail-note">${z.valid?`Vyhodnoceno ${duration(z.valid)} s dostupným tepem.`:(r.avgHr?`Průměrný tep ${Math.round(r.avgHr)} bpm spadá orientačně do ${zoneIndex(r.avgHr,zoneSettings)>=0?ZONE_LABELS[zoneIndex(r.avgHr,zoneSettings)]:'neznámé zóny'}, ale čas v zónách bez průběhu neurčíme.`:'Zatím nejsou dostupné průběžné údaje o tepu.')}</div><div class="zone-rows">${zoneRows(z.seconds)}</div>`;
+  const cadencePts=samples.filter(p=>runCadence({cadence:p.cadence})!=null);
+  const cadHtml=cadencePts.length>5?'<div class="detail-subhead">PRŮBĚH KADENCE BĚHEM BĚHU</div><div class="detail-chart"><canvas id="cadenceDetailChart" role="img" aria-label="Kadence v krocích za minutu během běhu"></canvas></div>':`<p class="help">${runCadence(r)!=null?'Dostupná je pouze souhrnná kadence; podrobný graf vyžaduje FIT nebo TCX s průběžnými záznamy.':'Kadence u tohoto běhu není zaznamenána.'}</p>`;
+  const splits=getSplitList(r);
+  $('runDetailBody').innerHTML=metricHtml+sampleHtml+zHtml+cadHtml+(splits.length?`<div class="detail-subhead">MEZIČASY</div><div class="splits">${splits.map(x=>`<span class="split-pill">${escapeHtml(x)}</span>`).join('')}</div>`:'')+simpleRouteSvg(samples)+`<p class="help">Zdroj: ${escapeHtml(r.fileName||r.source)} · Tempo a splity jsou orientační, mohou zahrnovat pauzy nebo GPS nepřesnosti.</p>`;
+  if(charts.detail){charts.detail.destroy();charts.detail=null;}
+  if(charts.cadenceDetail){charts.cadenceDetail.destroy();charts.cadenceDetail=null;}
+  if(cadencePts.length>5){
+    const selectedCad=cadencePts.filter((p,i)=>i%Math.max(1,Math.ceil(cadencePts.length/150))===0||i===cadencePts.length-1);
+    resetChart('cadenceDetail',$('cadenceDetailChart'),{type:'line',data:{labels:selectedCad.map(p=>(p.d/1000).toFixed(1)),datasets:[{label:'Kadence (spm)',data:selectedCad.map(p=>usableCadenceValue(p.cadence)),borderColor:'#e5ca82',backgroundColor:'#e5ca821f',borderWidth:2,pointRadius:0,tension:.2,spanGaps:true,fill:true}]},options:{...chartDefaults(),plugins:{...chartDefaults().plugins,tooltip:{...chartDefaults().plugins.tooltip,callbacks:{title:items=>`${items[0]?.label} km`,label:c=>`${Math.round(c.parsed.y)} kroků/min`}}},scales:{...chartDefaults().scales,y:{...chartDefaults().scales.y,beginAtZero:false,ticks:{...chartDefaults().scales.y.ticks,callback:v=>`${v} spm`}}}}});
+  }
+  if(samples.length>6){
+    const chartPts=samples.filter((p,i)=>i===0||i===samples.length-1||i%Math.max(1,Math.ceil(samples.length/120))===0);
+    const paces=chartPts.map((p,i)=>{
+      const prev=chartPts[Math.max(0,i-1)];const dd=p.d-prev.d,dt=p.t-prev.t;
+      if(i===0)return null;
+      const estimated=p.speed&&p.speed>1?1000/p.speed:(dd>3&&dt>0?dt*1000/dd:null);
+      return estimated>=130&&estimated<=1200?Number((estimated/60).toFixed(2)):null;
+    });
+    const hearts=chartPts.map(p=>p.hr??null);
+    const datasets=[];
+    if(paces.some(x=>x!=null))datasets.push({label:'Tempo (min/km)',data:paces,borderColor:'#d9fd71',borderWidth:2,pointRadius:0,tension:.25,spanGaps:true,yAxisID:'pace'});
+    if(hearts.some(x=>x!=null))datasets.push({label:'Tep (bpm)',data:hearts,borderColor:'#65ddce',borderWidth:2,pointRadius:0,tension:.25,spanGaps:true,yAxisID:'hr'});
+    if(!datasets.length){$('detailChart').parentElement.outerHTML='<div class="no-samples">Průběhová data nejsou pro graf použitelná.</div>';}
+    else{
+      const scales={x:{grid:{display:false},ticks:{color:colors.ticks,font:{size:10},maxTicksLimit:6}},pace:{position:'left',display:datasets.some(d=>d.yAxisID==='pace'),reverse:true,grid:{color:colors.line},ticks:{color:colors.lime,font:{size:10},callback:v=>pace(v*60)}},hr:{position:'right',display:datasets.some(d=>d.yAxisID==='hr'),grid:{drawOnChartArea:false},ticks:{color:colors.aqua,font:{size:10}}}};
+      resetChart('detail',$('detailChart'),{type:'line',data:{labels:chartPts.map(p=>(p.d/1000).toFixed(1)),datasets},options:{responsive:true,maintainAspectRatio:false,plugins:{legend:{labels:{color:'#a7c0c5',boxWidth:10,font:{size:10}}},tooltip:{mode:'index',intersect:false,callbacks:{title:x=>`${x[0]?.label} km`}}},interaction:{mode:'index',intersect:false},scales}});
+    }
+  }
+}
+function render(){
+  const data=currentRuns(),selected=filterPeriod(data);
+  $('demoBanner').hidden=!demo();
+  if(!selectedId||!data.some(r=>r.id===selectedId))selectedId=data[0]?.id||null;
+  renderMetrics(selected);renderCharts(data);renderHeartComparison(data);renderZones(selected);renderCadence(selected);renderInsights(data);renderGoal(data);renderList(data);renderDetail(data);
+}
+function openFiles(){$('fileInput').click();}
+async function importFiles(files){
+  if(!files.length)return;
+  let success=0,duplicates=0;const errors=[];
+  const seen=new Set(runs.map(r=>r.id));
+  for(const f of files){
+    try{
+      const imported=await parseFile(f);
+      for(const r of imported){if(seen.has(r.id)){duplicates++;continue;}await saveRun(r);seen.add(r.id);runs.push(r);success++;}
+    }catch(e){errors.push(`${f.name}: ${e.message}`);}
+  }
+  runs.sort((a,b)=>b.date.localeCompare(a.date));
+  if(success)selectedId=runs[0].id;
+  render();
+  if(errors.length)toast(`${success} běhů přidáno, ${errors.length} souborů přeskočeno. ${errors[0]}`,true);
+  else toast(success?`Úspěšně přidáno ${success} běhů${duplicates?` · ${duplicates} duplicit vynecháno`:''}.`:`Žádné nové běhy${duplicates?' (již nahrané soubory)':''}.`);
+}
+function exportBackup(){
+  if(!runs.length){toast('Nejprve nahraj vlastní běhy. Ukázková data se nezálohují.',true);return;}
+  const json=JSON.stringify({format:'bezecky-kompas-v1',exportedAt:new Date().toISOString(),runs},null,2);
+  const url=URL.createObjectURL(new Blob([json],{type:'application/json'}));
+  const a=document.createElement('a');a.href=url;a.download=`bezecky-kompas-zaloha-${new Date().toISOString().slice(0,10)}.json`;document.body.append(a);a.click();a.remove();setTimeout(()=>URL.revokeObjectURL(url),10000);
+  toast('Záloha byla připravena ke stažení.');
+}
+
+// Garmin Personal API sync – no credentials embedded in this public HTML.
+function setGarminStatus(message, isError=false) {
+  const el = $('garminSyncStatus');
+  el.textContent = message;
+  el.classList.toggle('error', isError);
+}
+function garminToRun(item) {
+  const r = toRun({
+    fileName: item.name || 'Garmin Connect', source: 'GARMIN API',
+    date: item.date, distanceMeters: item.distanceMeters,
+    durationSeconds: item.durationS, avgHr: item.avgHr, maxHr: item.maxHr,
+    cadence: cadenceSpm(item.cadence), ascent: item.ascent,
+  });
+  return {...r, id: `garmin-${item.id}`, garminActivityId: String(item.id)};
+}
+function isDuplicateGarmin(item, currentRuns) {
+  return currentRuns.some(r => r.id === `garmin-${item.id}` ||
+    (Math.abs(new Date(r.date).getTime() - new Date(item.date).getTime()) < 60000 &&
+     Math.abs(r.distanceKm - item.distanceMeters / 1000) < 0.05 &&
+     Math.abs(r.durationS - item.durationS) < 60));
+}
+async function garminRequest(base, route, password) {
+  let response;
+  try {
+    response = await fetch(base + route, {
+      headers: {Authorization: 'Bearer ' + password}, cache: 'no-store'
+    });
+  } catch(e) {
+    throw new Error('Nepodařilo se spojit s Workerem. Zkontroluj adresu a Cloudflare nasazení.');
+  }
+  if (!response.ok) {
+    let data = null;
+    try {data = await response.json();} catch {}
+    throw new Error(data?.error || `Server odpověděl HTTP ${response.status}.`);
+  }
+  return response;
+}
+async function importGarminDetail(base, password, item) {
+  const response = await garminRequest(base, `/api/activity/${encodeURIComponent(item.id)}/fit`, password);
+  const zipBytes = new Uint8Array(await response.arrayBuffer());
+  if (zipBytes.length > 16*1024*1024) throw new Error('FIT ZIP je příliš velký.');
+  const entries = unzipSync(zipBytes, {
+    filter: entry => entry.name.toLowerCase().endsWith('.fit') && entry.originalSize <= 40*1024*1024
+  });
+  const filename = Object.keys(entries).find(k => k.toLowerCase().endsWith('.fit'));
+  if (!filename) throw new Error('Stažený ZIP neobsahuje FIT.');
+  const fit = new File([entries[filename]], `garmin-${item.id}.fit`, {type: 'application/octet-stream'});
+  const parsed = await parseFIT(fit);
+  return {
+    ...parsed, id: `garmin-${item.id}`, garminActivityId: String(item.id),
+    fileName: item.name || filename, source: 'GARMIN API · FIT',
+    // Some FIT files lack a summary even if the activity listing has it.
+    avgHr: parsed.avgHr ?? item.avgHr,
+    maxHr: parsed.maxHr ?? item.maxHr,
+    cadence: parsed.cadence ?? cadenceSpm(item.cadence),
+    ascent: parsed.ascent ?? item.ascent,
+  };
+}
+async function syncGarmin(event) {
+  event.preventDefault();
+  const button = $('garminSyncButton');
+  const base = $('garminWorkerUrl').value.trim().replace(/\/+$/, '');
+  const password = $('garminSyncPassword').value.trim();
+  if (!/^https:\/\/[a-z0-9.-]+(?:\:\d+)?$/i.test(base)) {
+    setGarminStatus('Zadej úplnou HTTPS adresu Workeru bez další cesty.', true);return;
+  }
+  if (!password) {setGarminStatus('Zadej synchronizační heslo.', true);return;}
+  // URL is public configuration, unlike the private password and Garmin API key.
+  localStorage.setItem('bezecky-kompas-worker-url', base);
+  button.disabled = true;
+  button.textContent = '⏳ Načítám…';
+  try {
+    setGarminStatus('Připojuji se ke Garmin Connect…');
+    const response = await garminRequest(base, '/api/activities?limit=35', password);
+    const body = await response.json();
+    if (!Array.isArray(body.items)) throw new Error('Server nevrátil seznam aktivit.');
+    const newItems = body.items.filter(x=>
+      x?.id && x.date && Number(x.distanceMeters) > 80 && Number(x.durationS) > 10 &&
+      !isDuplicateGarmin(x, runs));
+    let imported = 0, details = 0, usedSummary = 0, skipped = 0;
+    // Download detailed FIT files for up to 12 new activities to keep mobile sync fast.
+    for (const [index, item] of newItems.entries()) {
+      setGarminStatus(`Zpracovávám běh ${index+1} z ${newItems.length}…`);
+      try {
+        let run;
+        if (index < 12) {
+          try {run = await importGarminDetail(base,password,item); details++;}
+          catch(e) {console.warn('Garmin FIT detail nelze načíst, použiji souhrn:', String(e));}
+        }
+        if (!run) {run = garminToRun(item); usedSummary++;}
+        await saveRun(run);
+        runs.push(run);
+        imported++;
+      } catch (e) {skipped++;console.warn('Garmin import:', String(e));}
+    }
+    runs.sort((a,b)=>b.date.localeCompare(a.date));
+    if (imported) selectedId=runs[0]?.id;
+    localStorage.setItem('bezecky-kompas-last-sync', new Date().toISOString());
+    render();
+    setGarminStatus(`Hotovo: ${imported} nových běhů, z toho ${details} s podrobným FIT (${usedSummary} pouze souhrn). ${body.items.length-newItems.length} již známých. ${skipped?skipped+' se nepodařilo uložit.':''}`);
+    toast(imported ? `Garmin: ${imported} nových běhů.` : 'Garmin: žádné nové běhy.');
+  } catch (e) {setGarminStatus('Chyba: ' + String(e.message || e), true);}
+  finally {button.disabled = false;button.textContent='↻ Synchronizovat Garmin';}
+}
+
+function bindUI(){
+  $('garminWorkerUrl').value=localStorage.getItem('bezecky-kompas-worker-url')||'';
+  $('garminSyncForm').addEventListener('submit',syncGarmin);
+  for(const id of ['uploadHero','uploadList'])$(id).addEventListener('click',openFiles);
+  $('fileInput').addEventListener('change',async e=>{await importFiles([...e.target.files]);e.target.value='';});
+  $('periodSelect').addEventListener('change',e=>{period=e.target.value;render();});
+  $('addManual').addEventListener('click',()=>{
+    const now=new Date();now.setMinutes(now.getMinutes()-now.getTimezoneOffset());$('manualDate').value=now.toISOString().slice(0,16);
+    $('manualDialog').showModal();
+  });
+  $('manualForm').addEventListener('submit',async e=>{
+    e.preventDefault();
+    const date=$('manualDate').value,km=Number($('manualDistance').value),seconds=parseDuration($('manualTime').value),hr=$('manualHr').value?Number($('manualHr').value):null,cadence=$('manualCadence').value?Number($('manualCadence').value):null;
+    if(!Number.isFinite(km)||km<.1||!Number.isFinite(seconds)||seconds<10){toast('Zadej platnou vzdálenost a čas (například 32:15).',true);return;}
+    try{const r=makeManualRun({date,km,seconds,hr,cadence});if(runs.some(x=>x.id===r.id)){toast('Tento běh už v deníku existuje.',true);return;}
+      await saveRun(r);runs.push(r);runs.sort((a,b)=>b.date.localeCompare(a.date));selectedId=r.id;$('manualDialog').close();$('manualForm').reset();render();toast('Běh byl přidán.');
+    }catch(err){toast(err.message,true);}
+  });
+  $('exportBackup').addEventListener('click',exportBackup);
+  const settings=()=>{$('goalInput').value=goal;$('maxHrInput').value=zoneSettings.maxHr;zoneSettings.thresholds.forEach((v,i)=>$('zonePct'+(i+1)).value=v);$('settingsDialog').showModal();};
+  $('openSettings').addEventListener('click',settings);$('editGoal').addEventListener('click',settings);$('editZones').addEventListener('click',settings);
+  document.querySelectorAll('.dialog-close').forEach(b=>b.addEventListener('click',()=>b.closest('dialog').close()));
+  $('saveSettings').addEventListener('click',()=>{
+    const n=Number($('goalInput').value),maxHr=Number($('maxHrInput').value),limits=[1,2,3,4].map(i=>Number($('zonePct'+i).value));
+    if(!Number.isFinite(n)||n<1||n>300){toast('Týdenní cíl musí být 1–300 km.',true);return;}
+    if(!Number.isInteger(maxHr)||maxHr<120||maxHr>230){toast('Maximální tep musí být 120–230 bpm.',true);return;}
+    if(limits.some((v,i)=>!Number.isInteger(v)||v<40||v>96||(i>0&&v<=limits[i-1]+4))){toast('Hranice zón nastav vzestupně, minimálně 5 procentních bodů od sebe.',true);return;}
+    goal=n;zoneSettings={maxHr,thresholds:limits};
+    localStorage.setItem('bezecky-kompas-goal',String(goal));localStorage.setItem('bezecky-kompas-zone-settings',JSON.stringify(zoneSettings));
+    $('settingsDialog').close();render();toast('Cíle a tepové zóny byly uloženy.');
+  });
+  $('removeRun').addEventListener('click',async()=>{
+    const r=runs.find(x=>x.id===selectedId);if(!r||!confirm(`Smazat běh ${round1(r.distanceKm)} km ze dne ${fmtDate(r.date)}?`))return;
+    await deleteRun(r.id);runs=runs.filter(x=>x.id!==r.id);selectedId=runs[0]?.id||null;render();toast('Běh byl smazán.');
+  });
+  $('clearAll').addEventListener('click',async()=>{
+    if(!confirm('Smazat všechny vlastní běhy z tohoto zařízení? Tuto akci nelze vrátit zpět. Předem doporučujeme zálohu JSON.'))return;
+    await clearRuns();runs=[];selectedId=null;$('settingsDialog').close();render();toast('Všechny vlastní záznamy byly smazány.');
+  });
+  const hero=document.querySelector('.hero');
+  ['dragenter','dragover'].forEach(type=>document.addEventListener(type,e=>{e.preventDefault();hero.style.outline='2px dashed #d9fd71';}));
+  ['dragleave','drop'].forEach(type=>document.addEventListener(type,e=>{e.preventDefault();hero.style.outline='';}));
+  document.addEventListener('drop',e=>{if(e.dataTransfer?.files?.length)importFiles([...e.dataTransfer.files]);});
+}
+
+async function init(){
+  setText('todayLabel',fmtDate(new Date(),{day:'numeric',month:'long',year:'numeric'}).toUpperCase());
+  bindUI();
+  try{runs=(await loadRuns()).map(migrateCadenceRun);}catch(e){console.error(e);toast('Úložiště prohlížeče není dostupné. Zkus nepoužívat soukromý režim.',true);}
+  render();
+}
+init();
+
+</script>
+  </body>
+</html>
