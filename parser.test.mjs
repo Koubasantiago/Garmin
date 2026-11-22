@@ -1,0 +1,15 @@
+import assert from 'node:assert/strict';
+import {parseFile} from './parser-test-clone.mjs';
+const csv='Date,Activity Type,Distance,Time,Avg Run Cadence,Avg HR\n2026-11-18,Running,5,30:00,86,145\n2026-11-19,Running,10,58:00,172,149';
+const csvRun=await parseFile({name:'runs.csv',size:csv.length,text:async()=>csv});
+assert.equal(csvRun.length,2);
+assert.equal(csvRun[0].cadence,172);
+assert.equal(csvRun[1].cadence,172);
+assert.equal(csvRun[0].cadenceSpmV,1);
+const fit=await parseFile({name:'run.fit',size:100,arrayBuffer:async()=>new Uint8Array([1,2,3]).buffer});
+assert.equal(fit.length,1);
+assert.equal(fit[0].cadence,172);
+assert.equal(fit[0].points[0].cadence,170);
+assert.equal(fit[0].points[1].cadence,172);
+assert.equal(fit[0].cadenceSpmV,1);
+console.log('Parsers: 9 kontrol FIT a CSV prošlo.');

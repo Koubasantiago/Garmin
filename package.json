@@ -1,0 +1,18 @@
+{
+  "name": "bezecky-kompas",
+  "private": true,
+  "version": "1.2.0",
+  "type": "module",
+  "scripts": {
+    "dev": "vite --host 0.0.0.0",
+    "build": "vite build",
+    "preview": "vite preview --host 0.0.0.0"
+  },
+  "dependencies": {
+    "@garmin/fitsdk": "^21.217.0",
+    "chart.js": "^4.5.1"
+  },
+  "devDependencies": {
+    "vite": "^7.3.0"
+  }
+}
